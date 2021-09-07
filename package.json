@@ -1,6 +1,6 @@
 {
-  "name": "sushiswap-analytics",
-  "version": "1.0.0",
+  "name": "mistswap-analytics",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.2.0",
