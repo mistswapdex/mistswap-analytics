@@ -83,7 +83,7 @@ function IndexPage() {
   return (
     <AppShell>
       <Head>
-        <title>Dashboard | SushiSwap Analytics</title>
+        <title>Dashboard | MISTswap Analytics</title>
       </Head>
       <Box mb={3}>
         <Search pairs={pairs} tokens={tokens} />

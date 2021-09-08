@@ -227,7 +227,7 @@ function UserPage() {
   return (
     <AppShell>
       <Head>
-        <title>User {id} | SushiSwap Analytics</title>
+        <title>User {id} | MISTswap Analytics</title>
       </Head>
 
       <PageHeader>

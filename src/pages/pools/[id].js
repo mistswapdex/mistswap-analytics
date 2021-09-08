@@ -172,7 +172,7 @@ function PoolPage() {
   return (
     <AppShell>
       <Head>
-        <title>Pool {id} | SushiSwap Analytics</title>
+        <title>Pool {id} | MISTswap Analytics</title>
       </Head>
 
       <PageHeader mb={3}>
@@ -197,7 +197,7 @@ function PoolPage() {
           </Grid>
           <Grid item xs={12} sm="auto" className={classes.links}>
             <Link
-              href={`https://sushiswapclassic.org/farms/${
+              href={`https://app.mistswap.fi/farms/${
                 pool.liquidityPair.token0.symbol
               }-${pool.liquidityPair.token1.symbol.replace(
                 "WETH",
