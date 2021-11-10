@@ -2,18 +2,18 @@ import { HttpLink, from, split } from "@apollo/client";
 
 import { RetryLink } from "@apollo/client/link/retry";
 
-export const uniswap = from([
-  new RetryLink(),
-  new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
-    shouldBatch: true,
-  }),
-]);
+// export const uniswap = from([
+//   new RetryLink(),
+//   new HttpLink({
+//     uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+//     shouldBatch: true,
+//   }),
+// ]);
 
 export const bar = from([
   new RetryLink(),
   new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/matthewlilley/bar",
+    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/bar",
     shouldBatch: true,
   }),
 ]);
@@ -21,7 +21,7 @@ export const bar = from([
 export const masterchef = from([
   new RetryLink(),
   new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/sushiswap/master-chef",
+    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/master-chef",
     shouldBatch: true,
   }),
 ]);
@@ -29,7 +29,7 @@ export const masterchef = from([
 export const exchange = from([
   new RetryLink(),
   new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/sushiswap/exchange",
+    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/exchange",
     shouldBatch: true,
   }),
 ]);
@@ -37,7 +37,7 @@ export const exchange = from([
 export const blocklytics = from([
   new RetryLink(),
   new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks",
+    uri: "http://78.47.81.198:8000/subgraphs/name/blocklytics/ethereum-blocks",
     shouldBatch: true,
   }),
 ]);
@@ -45,7 +45,7 @@ export const blocklytics = from([
 export const lockup = from([
   new RetryLink(),
   new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/matthewlilley/lockup",
+    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/lockup",
     shouldBatch: true,
   }),
 ]);

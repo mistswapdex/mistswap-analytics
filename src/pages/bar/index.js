@@ -65,7 +65,7 @@ function BarPage() {
     data: { token },
   } = useQuery(tokenQuery, {
     variables: {
-      id: "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+      id: "0x5fa664f69c2a4a3ec94fac3cbf7049bd9ca73129",
     },
   });
 
@@ -278,7 +278,8 @@ function BarPage() {
           </Paper>
         </Grid> */}
 
-        <Grid item xs={12}>
+        {/* Exception: sushiStakedUSD, sushiHarvestedUSD values are larger than Number.MAX_SAFE_INTEGER */}
+        {/* <Grid item xs={12}>
           <Paper
             variant="outlined"
             style={{ display: "flex", height: 400, flex: 1 }}
@@ -295,7 +296,7 @@ function BarPage() {
               )}
             </ParentSize>
           </Paper>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
           <Paper

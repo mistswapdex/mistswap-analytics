@@ -46,7 +46,7 @@
   "scripts": {
     "analyze": "ANALYZE=true yarn build",
     "analyze-serve": "serve .next/analyze -p 3002",
-    "dev": "next -p 3001",
+    "dev": "next -p 3005",
     "build": "next build",
     "start": "next start"
   },
