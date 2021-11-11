@@ -13,7 +13,7 @@ import { RetryLink } from "@apollo/client/link/retry";
 export const bar = from([
   new RetryLink(),
   new HttpLink({
-    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/bar",
+    uri: "https://thegraph.mistswap.fi/subgraphs/name/mistswap/bar",
     shouldBatch: true,
   }),
 ]);
@@ -21,7 +21,7 @@ export const bar = from([
 export const masterchef = from([
   new RetryLink(),
   new HttpLink({
-    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/master-chef",
+    uri: "https://thegraph.mistswap.fi/subgraphs/name/mistswap/master-chef",
     shouldBatch: true,
   }),
 ]);
@@ -29,7 +29,7 @@ export const masterchef = from([
 export const exchange = from([
   new RetryLink(),
   new HttpLink({
-    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/exchange",
+    uri: "https://thegraph.mistswap.fi/subgraphs/name/mistswap/exchange",
     shouldBatch: true,
   }),
 ]);
@@ -37,7 +37,7 @@ export const exchange = from([
 export const blocklytics = from([
   new RetryLink(),
   new HttpLink({
-    uri: "http://78.47.81.198:8000/subgraphs/name/blocklytics/ethereum-blocks",
+    uri: "https://thegraph.mistswap.fi/subgraphs/name/blocklytics/ethereum-blocks",
     shouldBatch: true,
   }),
 ]);
@@ -45,7 +45,7 @@ export const blocklytics = from([
 export const lockup = from([
   new RetryLink(),
   new HttpLink({
-    uri: "http://78.47.81.198:8000/subgraphs/name/mistswap/lockup",
+    uri: "https://thegraph.mistswap.fi/subgraphs/name/mistswap/lockup",
     shouldBatch: true,
   }),
 ]);
