@@ -298,6 +298,7 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Tokens" />
         </ListItem>
+        {/*
         <ListItem
           button
           key="/portfolio"
@@ -316,6 +317,7 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Portfolio" />
         </ListItem>
+        */}
       </List>
       <Dialog
         maxWidth="sm"
