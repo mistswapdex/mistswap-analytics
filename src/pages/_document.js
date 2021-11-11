@@ -89,7 +89,7 @@ export default class MyDocument extends Document {
             content={process.env.APP_DESCRIPTION}
           />
           <meta name="twitter:image" content="/android-chrome-192x192.png" />
-          <meta name="twitter:creator" content="@MatthewLilley" />
+          <meta name="twitter:creator" content="@mistswapdex" />
 
           {/* FACEBOOK */}
           <meta property="og:type" content="website" />
