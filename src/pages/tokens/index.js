@@ -24,7 +24,7 @@ function TokensPage() {
   return (
     <AppShell>
       <Head>
-        <title>Tokens | MISTswap Analytics</title>
+        <title>Tokens | MistSwap Analytics</title>
       </Head>
       <TokenTable title="Tokens" tokens={tokens} />
     </AppShell>

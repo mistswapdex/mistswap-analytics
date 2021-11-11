@@ -32,9 +32,9 @@ export default function LosersList({ pairs }) {
                 <PairIcon base={row.token0.id} quote={row.token1.id} />
                 <Link href={`/pairs/${row.id}`} variant="body2" noWrap>
                   {`${row.token0.symbol.replace(
-                    "WETH",
-                    "ETH"
-                  )}-${row.token1.symbol.replace("WETH", "ETH")}`}
+                    "WBCH",
+                    "BCH"
+                  )}-${row.token1.symbol.replace("WBCH", "BCH")}`}
                 </Link>
               </Box>
             ),

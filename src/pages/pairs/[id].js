@@ -188,7 +188,7 @@ function PairPage(props) {
     <AppShell>
       <Head>
         <title>
-          {pair.token0.symbol}-{pair.token1.symbol} | MISTswap Analytics
+          {pair.token0.symbol}-{pair.token1.symbol} | MistSwap Analytics
         </title>
       </Head>
       <PageHeader>

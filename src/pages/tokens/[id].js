@@ -171,7 +171,7 @@ function TokenPage() {
     <AppShell>
       <Head>
         <title>
-          {currencyFormatter.format(price || 0)} | {token.symbol} | MISTswap
+          {currencyFormatter.format(price || 0)} | {token.symbol} | MistSwap
           Analytics
         </title>
       </Head>

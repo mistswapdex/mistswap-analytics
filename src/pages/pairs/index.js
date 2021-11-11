@@ -13,7 +13,7 @@ function PairsPage() {
   return (
     <AppShell>
       <Head>
-        <title>Pairs | MISTswap Analytics</title>
+        <title>Pairs | MistSwap Analytics</title>
       </Head>
       <PairTable title="Pairs" pairs={pairs} />
     </AppShell>

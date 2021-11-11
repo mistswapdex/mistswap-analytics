@@ -45,9 +45,9 @@ export default function PairTable({ pairs, title, ...rest }) {
       return {
         ...pair,
         displayName: `${pair.token0.symbol.replace(
-          "WETH",
-          "ETH"
-        )}-${pair.token1.symbol.replace("WETH", "ETH")}`,
+          "WBCH",
+          "BCH"
+        )}-${pair.token1.symbol.replace("WBCH", "BCH")}`,
         oneDayVolume: !Number.isNaN(oneDayVolume) ? oneDayVolume : 0,
         sevenDayVolume: !Number.isNaN(sevenDayVolume) ? sevenDayVolume : 0,
         oneDayFees: !Number.isNaN(oneDayFees) ? oneDayFees : 0,

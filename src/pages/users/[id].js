@@ -227,7 +227,7 @@ function UserPage() {
   return (
     <AppShell>
       <Head>
-        <title>User {id} | MISTswap Analytics</title>
+        <title>User {id} | MistSwap Analytics</title>
       </Head>
 
       <PageHeader>
@@ -265,7 +265,7 @@ function UserPage() {
 
               <Grid item xs={12} sm={6} md={3}>
                 <KPI
-                  title="xSUSHI"
+                  title="xMIST"
                   value={Number(xSushi.toFixed(2)).toLocaleString()}
                 />
               </Grid>
@@ -312,8 +312,8 @@ function UserPage() {
                         <Avatar
                           className={classes.avatar}
                           imgProps={{ loading: "lazy" }}
-                          alt="SUSHI"
-                          src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${toChecksumAddress(
+                          alt="MIST"
+                          src={`https://raw.githubusercontent.com/mistswapdex/assets/master/blockchains/smartbch/assets/${toChecksumAddress(
                             "0x5fa664f69c2a4a3ec94fac3cbf7049bd9ca73129"
                           )}/logo.png`}
                         />
@@ -322,10 +322,10 @@ function UserPage() {
                           variant="body2"
                           noWrap
                         >
-                          SUSHI
+                          MIST
                         </Link>
                         {/* <Link href={`/tokens/0xc41c680c60309d4646379ed62020c534eb67b6f4`} variant="body2" noWrap>
-                        xSUSHI
+                        xMIST
                       </Link> */}
                       </Box>
                     </TableCell>

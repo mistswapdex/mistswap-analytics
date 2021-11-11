@@ -19,7 +19,7 @@ function PoolsPage() {
   return (
     <AppShell>
       <Head>
-        <title>Pools | MISTswap Analytics</title>
+        <title>Pools | MistSwap Analytics</title>
       </Head>
       <PoolTable
         pools={pools}

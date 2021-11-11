@@ -20,7 +20,7 @@ function GainersPage() {
   return (
     <AppShell>
       <Head>
-        <title>Top Gainers | MISTswap Analytics</title>
+        <title>Top Gainers | MistSwap Analytics</title>
       </Head>
       <GainersList pairs={pairs} />
     </AppShell>

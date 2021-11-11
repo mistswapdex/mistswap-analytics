@@ -27,6 +27,7 @@ import {
   WavesOutlined,
 } from "@material-ui/icons";
 import {
+  Avatar,
   Box,
   Button,
   Collapse,
@@ -52,7 +53,6 @@ import {
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Sushi from "./Sushi";
 import { useRouter } from "next/router";
 
 const drawerWidth = 240;
@@ -94,10 +94,10 @@ export default function AppNavigation() {
         <Hidden smUp implementation="css">
           <Box display="flex" alignItems="center" py={0.5}>
             <IconButton edge={false} onClick={() => router.push("/")}>
-              <Sushi />
+              <Avatar classes={{ root: classes.root }} src="https://raw.githubusercontent.com/mistswapdex/art/master/mist/gray-128x128.png" />
             </IconButton>
             <Typography variant="subtitle1" color="textPrimary" noWrap>
-              MIST Analytics
+              MistSwap Analytics
             </Typography>
           </Box>
         </Hidden>

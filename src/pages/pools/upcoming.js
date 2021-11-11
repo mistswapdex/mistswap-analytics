@@ -39,7 +39,7 @@ function UpcomingPoolsPage() {
   return (
     <AppShell>
       <Head>
-        <title>Upcoming Pools | MISTswap Analytics</title>
+        <title>Upcoming Pools | MistSwap Analytics</title>
       </Head>
       <UpcomingPoolTable
         title={title}

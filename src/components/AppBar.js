@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Container,
   Drawer,
@@ -19,7 +20,6 @@ import {
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Sushi from "./Sushi";
 import clsx from "clsx";
 import { darkModeVar } from "app/core";
 import useDetect from "../core/hooks/useDetect";
@@ -139,10 +139,10 @@ export default function AppBar({
               justifyContent="space-around"
             >
               <IconButton edge={false} onClick={() => router.push("/")}>
-                <Sushi />
+                <Avatar classes={{ root: classes.root }} src="https://raw.githubusercontent.com/mistswapdex/art/master/mist/gray-128x128.png" />
               </IconButton>
               <Typography variant="subtitle1" color="textPrimary" noWrap>
-                MISTswap Analytics
+                MistSwap Analytics
               </Typography>
             </Box>
           </Hidden>

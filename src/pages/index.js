@@ -83,7 +83,7 @@ function IndexPage() {
   return (
     <AppShell>
       <Head>
-        <title>Dashboard | MISTswap Analytics</title>
+        <title>Dashboard | MistSwap Analytics</title>
       </Head>
       <Box mb={3}>
         <Search pairs={pairs} tokens={tokens} />
@@ -129,7 +129,7 @@ function IndexPage() {
         </Grid>
 
         <Grid item xs={12}>
-          <PairTable title="Top Sushi Liquidity Pairs" pairs={pairs} />
+          <PairTable title="Top Mist Liquidity Pairs" pairs={pairs} />
         </Grid>
 
         <Grid item xs={12}>
@@ -138,7 +138,7 @@ function IndexPage() {
 
         <Grid item xs={12}>
           <PoolTable
-            title="Sushi Reward Pools"
+            title="Mist Reward Pools"
             pools={pools}
             orderBy="tvl"
             order="desc"

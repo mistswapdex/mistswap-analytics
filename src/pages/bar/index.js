@@ -171,7 +171,7 @@ function BarPage() {
   return (
     <AppShell>
       <Head>
-        <title>MIST Bar | MISTswap Analytics</title>
+        <title>MIST Bar | MistSwap Analytics</title>
       </Head>
 
       <Grid container spacing={3}>
@@ -179,7 +179,7 @@ function BarPage() {
           <Grid container spacing={3}>
             {/* <Grid item xs>
               <KPI
-                title="xSushi Age"
+                title="xMist Age"
                 value={parseFloat(bar.xSushiAge).toLocaleString()}
               />
             </Grid> */}
@@ -190,7 +190,7 @@ function BarPage() {
               <KPI title="APY (Avg)" value={averageApy} format="percent" />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="xSushi" value={bar.totalSupply} format="integer" />
+              <KPI title="xMist" value={bar.totalSupply} format="integer" />
             </Grid>
             {/* <Grid item xs={12} sm={6} md={3}>
               <KPI
@@ -199,7 +199,7 @@ function BarPage() {
               />
             </Grid> */}
             <Grid item xs={12} sm={6} md={3}>
-              <KPI title="xSushi:Sushi" value={Number(bar.ratio).toFixed(4)} />
+              <KPI title="xMist:Mist" value={Number(bar.ratio).toFixed(4)} />
             </Grid>
           </Grid>
         </Grid>
@@ -210,7 +210,7 @@ function BarPage() {
             style={{ height: 300, position: "relative" }}
           >
             <Lines
-              title="xSushi Age & xSushi Age Destroyed"
+              title="xMist Age & xMist Age Destroyed"
               margin={{ top: 64, right: 32, bottom: 32, left: 64 }}
               strokes={[
                 theme.palette.positive.light,
@@ -310,7 +310,7 @@ function BarPage() {
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
                   data={[xSushiMinted, xSushiBurned]}
-                  labels={["xSushi Minted", "xSushi Burned"]}
+                  labels={["xMist Minted", "xMist Burned"]}
                 />
               )}
             </ParentSize>
@@ -327,7 +327,7 @@ function BarPage() {
                 <Curves
                   width={width}
                   height={height}
-                  title="xSushi Total Supply"
+                  title="xMist Total Supply"
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
                   data={[xSushi]}
                 />

@@ -23,7 +23,7 @@ function RecentPoolsPage() {
   return (
     <AppShell>
       <Head>
-        <title>Recently Added Pools | MISTswap Analytics</title>
+        <title>Recently Added Pools | MistSwap Analytics</title>
       </Head>
       <PoolTable
         title="Recently Added Pools"

@@ -172,7 +172,7 @@ function PoolPage() {
   return (
     <AppShell>
       <Head>
-        <title>Pool {id} | MISTswap Analytics</title>
+        <title>Pool {id} | MistSwap Analytics</title>
       </Head>
 
       <PageHeader mb={3}>
@@ -200,9 +200,9 @@ function PoolPage() {
               href={`https://app.mistswap.fi/farms/${
                 pool.liquidityPair.token0.symbol
               }-${pool.liquidityPair.token1.symbol.replace(
-                "WETH",
-                "ETH"
-              )}%20SLP`}
+                "WBCH",
+                "BCH"
+              )}%20MLP`}
               target="_blank"
               variant="body1"
             >

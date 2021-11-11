@@ -20,7 +20,7 @@ function LosersPage() {
   return (
     <AppShell>
       <Head>
-        <title>Top Losers | MISTswap Analytics</title>
+        <title>Top Losers | MistSwap Analytics</title>
       </Head>
       <LosersList pairs={pairs} />
     </AppShell>
