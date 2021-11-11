@@ -169,6 +169,7 @@ export default function AppNavigation() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            {/*
             <ListItem
               button
               selected={router.pathname === "/pools/recent"}
@@ -180,6 +181,7 @@ export default function AppNavigation() {
               </ListItemIcon>
               <ListItemText primary="Recent" />
             </ListItem>
+            */}
             <ListItem
               button
               selected={router.pathname === "/pools"}
