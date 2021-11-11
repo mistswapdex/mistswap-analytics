@@ -317,6 +317,7 @@ function BarPage() {
           </Paper>
         </Grid>
 
+        {/*
         <Grid item xs={12}>
           <Paper
             variant="outlined"
@@ -334,16 +335,8 @@ function BarPage() {
               )}
             </ParentSize>
           </Paper>
-
-          {/* <Chart
-            title="xSushi Total Supply"
-            data={xSushi}
-            height={400}
-            margin={{ top: 56, right: 24, bottom: 0, left: 56 }}
-            tooptip
-            brush
-          /> */}
         </Grid>
+        */}
       </Grid>
 
       {/* <pre>{JSON.stringify(bar, null, 2)}</pre> */}
