@@ -408,9 +408,11 @@ function PairPage(props) {
           ]}
         />
       </Box>
+      {/*
       <Box my={4}>
         <IntoTheBlock pairAddress={pair.id} />
       </Box>
+      */}
       <Box my={4}>
         <Transactions transactions={transactions} txCount={pair.txCount} />
       </Box>
