@@ -4,6 +4,7 @@ import {
   Brightness4,
   Brightness4Outlined,
   Brightness7,
+  CameraOutlined,
   CloseOutlined,
   DashboardOutlined,
   DetailsOutlined,
@@ -192,6 +193,17 @@ export default function AppNavigation() {
                 <DetailsOutlined />
               </ListItemIcon>
               <ListItemText primary="All" />
+            </ListItem>
+            <ListItem
+              button
+              selected={router.pathname === "/pools/upcoming"}
+              onClick={() => router.push("/pools/upcoming")}
+              className={classes.nested}
+            >
+              <ListItemIcon>
+                <CameraOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Upcoming" />
             </ListItem>
 
             {/* <ListItem

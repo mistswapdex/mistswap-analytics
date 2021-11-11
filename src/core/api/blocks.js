@@ -1,4 +1,12 @@
-import { blockQuery, blocksQuery, getApollo, latestBlockQuery } from "app/core";
+import {
+  blockQuery,
+  blocksQuery,
+  getApollo,
+  latestBlockQuery,
+} from "app/core";
+
+import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
+
 import {
   differenceInSeconds,
   getUnixTime,
@@ -65,6 +73,27 @@ export async function getSevenDayBlock(client = getApollo()) {
   const date = startOfMinute(subWeeks(Date.now(), 1));
   const start = Math.floor(date / 1000);
   const end = Math.floor(date / 1000) + 600;
+
+  const { data: blocksData } = await client.query({
+    query: blockQuery,
+    variables: {
+      start,
+      end,
+    },
+    context: {
+      clientName: "blocklytics",
+    },
+    fetchPolicy: "network-only",
+  });
+
+  return { number: Number(blocksData?.blocks[0].number) };
+}
+
+export async function getFarmReweightingBlock(client = getApollo()) {
+  const lastReweighting = FIRST_REWEIGHT_TIME + (Math.floor((REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)) / REWEIGHTING_PERIOD) * REWEIGHTING_PERIOD)
+
+  const start = Math.floor(lastReweighting / 1000);
+  const end = Date.now()
 
   const { data: blocksData } = await client.query({
     query: blockQuery,

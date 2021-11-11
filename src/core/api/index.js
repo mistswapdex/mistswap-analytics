@@ -5,6 +5,7 @@ import {
   getOneDayBlock,
   getSevenDayBlock,
   getTwoDayBlock,
+  getFarmReweightingBlock,
   oneDayEthPriceQuery,
   pairQuery,
   pairTimeTravelQuery,
@@ -166,6 +167,47 @@ export async function getPair(id, client = getApollo()) {
     variables: {
       id,
     },
+  });
+}
+
+export async function getUpcomingFarmPairs(client = getApollo()) {
+  const {
+    data: { pairs },
+  } = await client.query({
+    query: pairsQuery,
+  });
+
+  const pairAddresses = pairs.map((pair) => pair.id).sort();
+
+  const reweightingBlock = await getFarmReweightingBlock();
+
+  const {
+    data: { pairs: reweightingPairs },
+  } = await client.query({
+    query: pairsTimeTravelQuery,
+    variables: {
+      block: reweightingBlock,
+      pairAddresses,
+    },
+    fetchPolicy: "no-cache",
+  });
+
+  await client.cache.writeQuery({
+    query: pairsQuery,
+    data: {
+      pairs: pairs.map((pair) => {
+        const rPair = reweightingPairs.find(({ id }) => pair.id === id);
+        return {
+          ...pair,
+          untrackedVolumeUSD: String(rPair?.untrackedVolumeUSD),
+          volumeUSD: String(rPair?.volumeUSD),
+        };
+      }),
+    },
+  });
+
+  return await client.cache.readQuery({
+    query: pairsQuery,
   });
 }
 
