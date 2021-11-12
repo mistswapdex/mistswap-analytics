@@ -136,6 +136,7 @@ function IndexPage() {
           <TokenTable title="Top Tokens" tokens={tokens} />
         </Grid>
 
+        {/*
         <Grid item xs={12}>
           <PoolTable
             title="Mist Reward Pools"
@@ -145,6 +146,7 @@ function IndexPage() {
             rowsPerPage={25}
           />
         </Grid>
+        */}
       </Grid>
     </AppShell>
   );
