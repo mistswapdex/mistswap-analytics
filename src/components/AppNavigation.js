@@ -183,6 +183,7 @@ export default function AppNavigation() {
               <ListItemText primary="Recent" />
             </ListItem>
             */}
+            {/*
             <ListItem
               button
               selected={router.pathname === "/pools"}
@@ -194,6 +195,7 @@ export default function AppNavigation() {
               </ListItemIcon>
               <ListItemText primary="All" />
             </ListItem>
+            */}
             <ListItem
               button
               selected={router.pathname === "/pools/upcoming"}
