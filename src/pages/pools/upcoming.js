@@ -15,7 +15,6 @@ function UpcomingPoolsPage() {
   const {
     data
   } = useQuery(farmReweightingPairsQuery);
-  console.log('pairs-before-sort', data.pairs);
 
   const pairs1 = [...data.pairs]
     // sort pairs by volume
@@ -78,7 +77,6 @@ function UpcomingPoolsPage() {
   });
   console.log('pairs', pairs)
 
-
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
 
   function getTitle() {
@@ -107,7 +105,7 @@ function UpcomingPoolsPage() {
       <UpcomingPoolTable
         title={title}
         pairs={pairs}
-        orderBy="timestamp"
+        orderBy="newAllocation"
         order="desc"
         rowsPerPage={30}
       />

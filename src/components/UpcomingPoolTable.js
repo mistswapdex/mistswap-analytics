@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function UpcomingPoolTable({ pairs, ...rest }) {
   const classes = useStyles();
 
-  let rows = pairs
+  const rows = pairs
     .filter((row) => {
       return !PAIR_DENY.includes(row.id);
     })
@@ -34,7 +34,6 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
         )}-${pair.token1.symbol.replace("WBCH", "BCH")}`,
       };
     });
-  rows = rows.sort((a, b) => b.allocation - a.allocation);
 
   return (
     <div className={classes.root}>
