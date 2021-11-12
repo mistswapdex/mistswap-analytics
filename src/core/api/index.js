@@ -11,9 +11,12 @@ import {
   pairTimeTravelQuery,
   pairsQuery,
   pairsTimeTravelQuery,
+  farmReweightingPairsQuery,
   sevenDayEthPriceQuery,
   tokenPairsQuery,
 } from "app/core";
+
+import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
 
 export * from "./bar";
 export * from "./blocks";
@@ -170,44 +173,27 @@ export async function getPair(id, client = getApollo()) {
   });
 }
 
+export function getLastReweightingTime() {
+  return Math.floor(FIRST_REWEIGHT_TIME + (Math.floor((REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)) / REWEIGHTING_PERIOD) * REWEIGHTING_PERIOD))
+}
+
 export async function getUpcomingFarmPairs(client = getApollo()) {
   const {
     data: { pairs },
   } = await client.query({
-    query: pairsQuery,
-  });
-
-  const pairAddresses = pairs.map((pair) => pair.id).sort();
-
-  const reweightingBlock = await getFarmReweightingBlock();
-
-  const {
-    data: { pairs: reweightingPairs },
-  } = await client.query({
-    query: pairsTimeTravelQuery,
-    variables: {
-      block: reweightingBlock,
-      pairAddresses,
-    },
+    query: farmReweightingPairsQuery,
     fetchPolicy: "no-cache",
   });
 
   await client.cache.writeQuery({
-    query: pairsQuery,
+    query: farmReweightingPairsQuery,
     data: {
-      pairs: pairs.map((pair) => {
-        const rPair = reweightingPairs.find(({ id }) => pair.id === id);
-        return {
-          ...pair,
-          untrackedVolumeUSD: String(rPair?.untrackedVolumeUSD),
-          volumeUSD: String(rPair?.volumeUSD),
-        };
-      }),
+      pairs
     },
   });
 
   return await client.cache.readQuery({
-    query: pairsQuery,
+    query: farmReweightingPairsQuery,
   });
 }
 

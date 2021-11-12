@@ -32,11 +32,9 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           "WBCH",
           "BCH"
         )}-${pair.token1.symbol.replace("WBCH", "BCH")}`,
-        allocation: 300,
-        volatility: 0.2384,
       };
     });
-  rows = rows.sort((a, b) => a.allocation - b.allocation);
+  rows = rows.sort((a, b) => b.allocation - a.allocation);
 
   return (
     <div className={classes.root}>
@@ -72,7 +70,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
             render: (row) => (
               <Typography variant="subtitle2" noWrap>
                 <Percent
-                  percent={Number(row.allocation).toFixed(2)}
+                  percent={Number(row.allocation / 10000000).toFixed(2)}
                   display="inline"
                 />
               </Typography>
@@ -81,14 +79,12 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           {
             key: "volume",
             label: "Volume",
-            render: (row) =>
-              `${Number(row.volumeUSD).toFixed(3)}`,
+            render: (row) => formatCurrency(row.untrackedVolumeUSD),
           },
           {
             key: "volatility",
             label: "Volatility",
-            render: (row) =>
-              `${Number(row.volatility).toFixed(2)}`,
+            render: (row) => formatDecimal(row.volatility),
           },
         ]}
         rows={rows}

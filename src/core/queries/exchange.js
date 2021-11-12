@@ -292,6 +292,24 @@ export const pairsTimeTravelQuery = gql`
   }
 `;
 
+export const farmReweightingPairsQuery = gql`
+  query farmReweightingPairsQuery(
+    $first:Int! = 1000
+    $orderBy: String! = "reserveUSD"
+    $orderDirection: String! = "desc"
+  ) {
+    pairs(first: $first, orderBy: $orderBy, orderDirection: $orderDirection) {
+      ...pairFields
+      dayData(first: 30, skip: 15, orderBy: date, order: desc) {
+        date
+        reserve0
+        reserve1
+      }
+    }
+  }
+  ${pairFieldsQuery}
+`;
+
 // Tokens...
 export const tokenFieldsQuery = gql`
   fragment tokenFields on Token {

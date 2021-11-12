@@ -3,6 +3,7 @@ import {
   blocksQuery,
   getApollo,
   latestBlockQuery,
+  getLastReweightingTime,
 } from "app/core";
 
 import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
@@ -90,10 +91,10 @@ export async function getSevenDayBlock(client = getApollo()) {
 }
 
 export async function getFarmReweightingBlock(client = getApollo()) {
-  const lastReweighting = FIRST_REWEIGHT_TIME + (Math.floor((REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)) / REWEIGHTING_PERIOD) * REWEIGHTING_PERIOD)
+  const lastReweighting = getLastReweightingTime();
 
   const start = Math.floor(lastReweighting / 1000);
-  const end = Date.now()
+  const end = Math.floor(Date.now())
 
   const { data: blocksData } = await client.query({
     query: blockQuery,
