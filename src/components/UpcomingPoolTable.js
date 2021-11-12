@@ -72,6 +72,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
                   percent={Number(row.allocation / 10000000).toFixed(2)}
                   display="inline"
                 />
+                {' '} / {formatDecimal(row.allocation / 1000000000 * 1568400)} MIST per day
               </Typography>
             )
           },
