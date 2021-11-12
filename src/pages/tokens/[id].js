@@ -291,13 +291,13 @@ function TokenPage() {
             { key: "name", label: "Name" },
             { key: "symbol", label: "Symbol" },
             { key: "address", label: "Address" },
-            { key: "etherscan", label: "Etherscan", align: "right" },
+            { key: "smartscan", label: "SmartScan", align: "right" },
           ]}
           bodyCells={[
             token.name,
             token.symbol,
             token.id,
-            <Link href={`https://etherscan.io/address/${token.id}`}>View</Link>,
+            <Link href={`https://smartscan.cash/address/${token.id}`}>View</Link>,
           ]}
         />
       </Box>

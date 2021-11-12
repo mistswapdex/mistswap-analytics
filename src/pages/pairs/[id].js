@@ -392,7 +392,7 @@ function PairPage(props) {
               label: `${pair.token1.symbol} Address`,
               maxWidth: "250px",
             },
-            { key: "etherscan", label: "Etherscan", align: "right" },
+            { key: "smartscan", label: "SmartScan", align: "right" },
           ]}
           bodyCells={[
             <Typography variant="body2" noWrap>
@@ -404,7 +404,7 @@ function PairPage(props) {
             <Typography variant="body2" noWrap>
               {pair.token1.id}
             </Typography>,
-            <Link href={`https://etherscan.io/address/${pair.id}`}>View</Link>,
+            <Link href={`https://smartscan.cash/address/${pair.id}`}>View</Link>,
           ]}
         />
       </Box>
