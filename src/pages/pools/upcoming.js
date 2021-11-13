@@ -20,10 +20,17 @@ function UpcomingPoolsPage() {
   console.log('pre-processed pairs', data.pairs)
   const pairs1 = [...data.pairs]
     // sort pairs by volume
-    .map((v) => ({
-      ...v,
-      accVolume: v.dayData.reduce((a, v) => a+Number.parseFloat(v.volumeUSD), 0),
-    }))
+    .map((v) => {
+      const mistMultiplier = (
+          v.token0.id === '0x5fa664f69c2a4a3ec94fac3cbf7049bd9ca73129'
+       || v.token1.id === '0x5fa664f69c2a4a3ec94fac3cbf7049bd9ca73129'
+      ) ? 1.5 : 1.0;
+
+      return {
+        ...v,
+        accVolume: v.dayData.reduce((a, v) => a+Number.parseFloat(v.volumeUSD), 0) * mistMultiplier,
+      }
+    })
     .sort((a, b) => b.accVolume - a.accVolume)
     // remove pairs without sufficient dayData
     .filter((v) => v.dayData.length >= 2)
