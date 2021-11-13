@@ -24,6 +24,9 @@ function UpcomingPoolsPage() {
   } = useQuery(farmReweightingPairsQuery);
 
   console.log('pre-processed pairs', data.pairs)
+
+  const FARM_COUNT = 30;
+
   const pairs1 = [...data.pairs]
     // remove pairs containing naughty tokens
     .filter((v) => {
@@ -61,7 +64,7 @@ function UpcomingPoolsPage() {
 
   const pairs2 = pairs1
     // we choose top 30 by volume pairs
-    .slice(0, 30)
+    .slice(0, FARM_COUNT)
     // calculate volatility of each pair
     .map((v) => {
       // TODO maybe we should multiply reserves by tokens price in usd?
@@ -85,20 +88,30 @@ function UpcomingPoolsPage() {
       };
     });
 
-  // calculate allocation of pairs
-  const pairs = pairs2.map((v) => {
-    const sp = pairs1.reduce((a, k) => a + (Number.parseFloat(k.accVolume) * v.volatility), 0);
-    const w = Number.parseFloat(v.accVolume) * v.volatility / sp;
+  const pairs3 = pairs2.map((v) => {
+    const preAllocation = v.accVolume * Math.log(v.volatility);
 
-    const MIN_AMOUNT = 0.0025;
-    const FIX_MIN = MIN_AMOUNT * (1 + (MIN_AMOUNT * (1 + (30 * MIN_AMOUNT)) * 30));
-    const allocation = Math.floor(((w + FIX_MIN) / (1 + (FIX_MIN * 30))) * 1000000000);
+    return {
+      ...v,
+      preAllocation,
+    };
+  });
+
+  const MIN_ALLOCATION = 0.0025;
+  const allocationSum = pairs3.map((v) => v.preAllocation).reduce((a, v) => a+v, 0) + (MIN_ALLOCATION * FARM_COUNT);
+
+  const pairs = pairs3.map((v) => {
+    const allocation = Math.floor(1000000000 * (
+      MIN_ALLOCATION + (v.preAllocation / allocationSum)) / (1 + (MIN_ALLOCATION * FARM_COUNT))
+    );
 
     return {
       ...v,
       allocation,
-    };
+    }
   });
+
+  console.log('total: ', pairs.reduce((a, v) => a + v.allocation, 0))
 
   const almostPairs = pairs1.filter((v) => {
     for (let o of pairs) {
@@ -163,9 +176,9 @@ function UpcomingPoolsPage() {
       <UpcomingPoolTable
         title={title}
         pairs={pairs}
-        orderBy="newAllocation"
+        orderBy="allocation"
         order="desc"
-        rowsPerPage={30}
+        rowsPerPage={FARM_COUNT}
       />
       <AlmostUpcomingPoolTable
         title="Pairs which are close to becoming Pools"
