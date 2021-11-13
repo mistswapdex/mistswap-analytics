@@ -304,6 +304,7 @@ export const farmReweightingPairsQuery = gql`
         date
         reserve0
         reserve1
+        volumeUSD
       }
     }
   }

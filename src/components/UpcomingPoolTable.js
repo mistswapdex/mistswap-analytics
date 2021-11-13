@@ -79,7 +79,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           {
             key: "volume",
             label: "Volume",
-            render: (row) => formatCurrency(row.untrackedVolumeUSD),
+            render: (row) => formatCurrency(row.accVolume),
           },
           {
             key: "volatility",

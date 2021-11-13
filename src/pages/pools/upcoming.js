@@ -16,9 +16,14 @@ function UpcomingPoolsPage() {
     data
   } = useQuery(farmReweightingPairsQuery);
 
+  console.log('pre-processed pairs', data.pairs)
   const pairs1 = [...data.pairs]
     // sort pairs by volume
-    .sort((a, b) => Number.parseFloat(b.untrackedVolumeUSD) - Number.parseFloat(a.untrackedVolumeUSD))
+    .map((v) => ({
+      ...v,
+      accVolume: v.dayData.reduce((a, v) => a+Number.parseFloat(v.volumeUSD), 0),
+    }))
+    .sort((a, b) => b.accVolume - a.accVolume)
     // remove pairs without sufficient dayData
     .filter((v) => v.dayData.length >= 2)
     // fix for pairs with limited dayData
@@ -63,8 +68,8 @@ function UpcomingPoolsPage() {
 
   // calculate allocation of pairs
   const pairs = pairs1.map((v) => {
-    const sp = pairs1.reduce((a, k) => a + (Number.parseFloat(k.untrackedVolumeUSD) * v.volatility), 0);
-    const w = Number.parseFloat(v.untrackedVolumeUSD) * v.volatility / sp;
+    const sp = pairs1.reduce((a, k) => a + (Number.parseFloat(k.accVolume) * v.volatility), 0);
+    const w = Number.parseFloat(v.accVolume) * v.volatility / sp;
 
     const MIN_AMOUNT = 0.0025;
     const FIX_MIN = MIN_AMOUNT * (1 + (MIN_AMOUNT * (1 + (30 * MIN_AMOUNT)) * 30));
