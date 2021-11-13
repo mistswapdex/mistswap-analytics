@@ -47,7 +47,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           //   label: "#",
           // },
           {
-            key: "name",
+            key: "displayName",
             label: "Name",
             render: (row, index) => {
               return (
@@ -64,7 +64,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
             },
           },
           {
-            key: "newAllocation",
+            key: "allocation",
             label: "Allocation",
             render: (row) => (
               <Typography variant="subtitle2" noWrap>
@@ -77,7 +77,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
             )
           },
           {
-            key: "volume",
+            key: "accVolume",
             label: "Volume",
             render: (row) => formatCurrency(row.accVolume),
           },
