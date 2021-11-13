@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   nested: {
-    paddingLeft: theme.spacing(3),
+    paddingLeft: theme.spacing(5),
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
