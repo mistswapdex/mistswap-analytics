@@ -19,6 +19,15 @@ function UpcomingPoolsPage() {
 
   console.log('pre-processed pairs', data.pairs)
   const pairs1 = [...data.pairs]
+    // remove pairs containing naughty tokens
+    .filter((v) => {
+      const blacklist = {
+        "0x124559e3b63a89125cab76ca2add07a335f89d57": "", // FRDG
+        "0x84e3ae3135d79536e032ee36dacc15e676400638": "", // PSN
+        "0x8803805547b4b7dd1e4d9492a43bf6418447fcb0": "", // LZD
+      };
+      return ! (blacklist.hasOwnProperty(v.token0.id) || blacklist.hasOwnProperty(v.token1.id));
+    })
     // sort pairs by volume
     .map((v) => ({
       ...v,
