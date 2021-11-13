@@ -51,6 +51,7 @@ export default function PairTable({ pairs, title, ...rest }) {
         oneDayVolume: !Number.isNaN(oneDayVolume) ? oneDayVolume : 0,
         sevenDayVolume: !Number.isNaN(sevenDayVolume) ? sevenDayVolume : 0,
         oneDayFees: !Number.isNaN(oneDayFees) ? oneDayFees : 0,
+        sevenDayFees: !Number.isNaN(sevenDayVolume)? sevenDayVolume * 0.003 : 0,
         oneYearFees,
       };
     });
@@ -102,7 +103,7 @@ export default function PairTable({ pairs, title, ...rest }) {
           {
             key: "sevenDayFees",
             render: (row) =>
-              currencyFormatter.format(row.sevenDayVolume * 0.003),
+              currencyFormatter.format(row.sevenDayFees),
             align: "right",
             label: "Fees (7d)",
           },
