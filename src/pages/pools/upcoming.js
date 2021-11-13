@@ -1,8 +1,9 @@
-import { AppShell, UpcomingPoolTable } from "app/components";
+import { AppShell, UpcomingPoolTable, AlmostUpcomingPoolTable } from "app/components";
 import {
   getApollo,
   getUpcomingFarmPairs,
   farmReweightingPairsQuery,
+  formatCurrency,
   useInterval,
 } from "app/core";
 import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
@@ -41,6 +42,8 @@ function UpcomingPoolsPage() {
       }
       return v;
     })
+
+  const pairs2 = pairs1
     // we choose top 30 by volume pairs
     .slice(0, 30)
     // calculate volatility of each pair
@@ -67,7 +70,7 @@ function UpcomingPoolsPage() {
     });
 
   // calculate allocation of pairs
-  const pairs = pairs1.map((v) => {
+  const pairs = pairs2.map((v) => {
     const sp = pairs1.reduce((a, k) => a + (Number.parseFloat(k.accVolume) * v.volatility), 0);
     const w = Number.parseFloat(v.accVolume) * v.volatility / sp;
 
@@ -80,6 +83,25 @@ function UpcomingPoolsPage() {
       allocation,
     };
   });
+
+  const almostPairs = pairs1.filter((v) => {
+    for (let o of pairs) {
+	  if (o.id === v.id) {
+	    return false;
+	  }
+	}
+
+	return true;
+  })
+  .slice(0, 10)
+  .map((v) => ({
+    ...v,
+	reason: v.accVolume === 0
+	  ? `Not enough liquidity (${formatCurrency(3000 - v.reserveUSD)} more)`
+	  : v.dayData < 2
+	    ? `Not enough liquidity (${formatCurrency(3000 - v.reserveUSD)} minimum) for a long enough time`
+		: `Not enough volume (${formatCurrency(pairs[pairs.length - 1].accVolume - v.accVolume)} more)`,
+  }));
   console.log('pairs', pairs)
 
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
@@ -112,6 +134,11 @@ function UpcomingPoolsPage() {
         pairs={pairs}
         orderBy="newAllocation"
         order="desc"
+        rowsPerPage={30}
+      />
+      <AlmostUpcomingPoolTable
+        title="Pairs which are close to becoming Pools"
+        pairs={almostPairs}
         rowsPerPage={30}
       />
     </AppShell>
