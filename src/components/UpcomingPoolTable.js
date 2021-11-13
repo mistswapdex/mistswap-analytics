@@ -163,7 +163,9 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           "WBCH",
           "BCH"
         )}-${pair.token1.symbol.replace("WBCH", "BCH")}`,
-        allocDelta: currentFarms.hasOwnProperty(pair.id) ? pair.allocation - currentFarms[pair.id].allocPoint : 0,
+        allocChangePercent: currentFarms.hasOwnProperty(pair.id)
+          ? ((pair.allocation - currentFarms[pair.id].allocPoint) / currentFarms[pair.id].allocPoint) * 100
+          : 0, // new farm
       };
     });
 
@@ -219,14 +221,14 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
               )
             },
             {
-              key: "allocDelta",
+              key: "allocChangePercent",
               label: "Allocation Change",
               render: (row) => (
                 <Typography variant="subtitle2" noWrap>
-                  {(row.allocDelta != 0) ? (
+                  {(row.allocChangePercent != 0) ? (
                     <Percent
-                      className={row.allocDelta >= 0 ? classes.gained : classes.lost}
-                      percent={Number(row.allocDelta / 10000000).toFixed(2)}
+                      className={row.allocChangePercent >= 0 ? classes.gained : classes.lost}
+                      percent={Number(row.allocChangePercent).toFixed(2)}
                       display="inline"
                     />
                   ) : (
