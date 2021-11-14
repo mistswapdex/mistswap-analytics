@@ -52,7 +52,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
   return (
     <>
       <Box display="flex" alignItems="center">
-        <Typography variant="subtitle2" noWrap>
+        <Typography variant="subtitle2">
           Upcoming farms are selected by a weighting algorithm described here: {' '}
           <Link href={`https://docs.mistswap.fi/products/amm-exchange/farm-allocation-algorithm/`} variant="body2" noWrap>
             Farm Allocation Algorithm
