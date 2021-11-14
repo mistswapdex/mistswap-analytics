@@ -7,7 +7,7 @@ import {
   defaultStyles,
   withTooltip,
 } from "@visx/tooltip";
-import { currencyFormatter, oneMonth, oneWeek } from "app/core";
+import { formatCurrency, oneMonth, oneWeek } from "app/core";
 import { scaleLinear, scaleTime } from "@visx/scale";
 import { useCallback, useMemo, useState } from "react";
 
@@ -74,7 +74,7 @@ function AreaChart({
 
   const [overlay, setOverlay] = useState({
     title,
-    value: currencyFormatter.format(data[data.length - 1]?.value),
+    value: formatCurrency(data[data.length - 1]?.value),
     date: data[data.length - 1]?.date,
   });
 
@@ -129,7 +129,7 @@ function AreaChart({
       // console.log("show ", d);
       setOverlay({
         ...overlay,
-        value: currencyFormatter.format(d?.value),
+        value: formatCurrency(d?.value),
         date: d?.date,
       });
       showTooltip({
@@ -175,7 +175,7 @@ function AreaChart({
             hideTooltip();
             setOverlay({
               ...overlay,
-              value: currencyFormatter.format(data[data.length - 1]?.value),
+              value: formatCurrency(data[data.length - 1]?.value),
               date: data[data.length - 1]?.date,
             });
           }}

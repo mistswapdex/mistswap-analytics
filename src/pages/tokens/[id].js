@@ -135,9 +135,13 @@ function TokenPage() {
         date: currentValue.date,
         value: parseFloat(currentValue.volumeUSD),
       });
+      previousValue["price"].unshift({
+        date: currentValue.date,
+        value: parseFloat(currentValue.priceUSD),
+      });
       return previousValue;
     },
-    { liquidity: [], volume: [] }
+    { liquidity: [], volume: [], price: [] }
   );
 
   const totalLiquidityUSD =
@@ -171,7 +175,7 @@ function TokenPage() {
     <AppShell>
       <Head>
         <title>
-          {currencyFormatter.format(price || 0)} | {token.symbol} | MistSwap
+          {formatCurrency(price || 0)} | {token.symbol} | MistSwap
           Analytics
         </title>
       </Head>
@@ -191,7 +195,7 @@ function TokenPage() {
             </Box>
             <Box display="flex" alignItems="center" className={classes.price}>
               <Typography variant="h6" component="div">
-                {currencyFormatter.format(price || 0)}
+                {formatCurrency(price || 0)}
               </Typography>
               <Percent percent={priceChange} ml={1} />
             </Box>
@@ -216,6 +220,26 @@ function TokenPage() {
       </PageHeader>
 
       <Grid container spacing={3}>
+        <Grid item xs={12} sm={12} md={6}>
+          <Paper
+            variant="outlined"
+            style={{ height: 300, position: "relative" }}
+          >
+            <ParentSize>
+              {({ width, height }) => (
+                <AreaChart
+                  title="Price"
+                  data={chartDatas.price}
+                  width={width}
+                  height={height}
+                  margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
+                  tooltipDisabled
+                  overlayEnabled
+                />
+              )}
+            </ParentSize>
+          </Paper>
+        </Grid>
         <Grid item xs={12} sm={12} md={6}>
           <Paper
             variant="outlined"
@@ -257,30 +281,39 @@ function TokenPage() {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} md={4}>
-          <KPI
-            title="Liquidity (24h)"
-            value={currencyFormatter.format(totalLiquidityUSD || 0)}
-            difference={
-              ((totalLiquidityUSD - totalLiquidityUSDYesterday) /
-                totalLiquidityUSDYesterday) *
-              100
-            }
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <KPI
-            title="Volume (24h)"
-            value={currencyFormatter.format(volume || 0)}
-            difference={((volume - volumeYesterday) / volumeYesterday) * 100}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <KPI
-            title="Fees (24h)"
-            value={currencyFormatter.format(fees)}
-            difference={((fees - feesYesterday) / feesYesterday) * 100}
-          />
+        <Grid item xs={12} sm={12} md={6}>
+          <Grid item xs={12} md={12}>
+            <KPI
+              title="Price (24h)"
+              value={formatCurrency(price || 0)}
+              difference={priceChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <KPI
+              title="Liquidity (24h)"
+              value={formatCurrency(totalLiquidityUSD || 0)}
+              difference={
+                ((totalLiquidityUSD - totalLiquidityUSDYesterday) /
+                  totalLiquidityUSDYesterday) *
+                100
+              }
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <KPI
+              title="Volume (24h)"
+              value={formatCurrency(volume || 0)}
+              difference={((volume - volumeYesterday) / volumeYesterday) * 100}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <KPI
+              title="Fees (24h)"
+              value={formatCurrency(fees)}
+              difference={((fees - feesYesterday) / feesYesterday) * 100}
+            />
+          </Grid>
         </Grid>
       </Grid>
 
