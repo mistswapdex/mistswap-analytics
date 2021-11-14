@@ -16,9 +16,12 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
+  lost: {
+    color: theme.palette.negative.main,
+  },
 }));
 
-export default function AlmostUpcomingPoolTable({ pairs, ...rest }) {
+export default function UpcomingRemovedPoolTable({ pairs, ...rest }) {
   const classes = useStyles();
 
   const rows = pairs
@@ -39,9 +42,9 @@ export default function AlmostUpcomingPoolTable({ pairs, ...rest }) {
   return (
     <div className={classes.root}>
       <SortableTable
-        title="Almost Pools"
-        // orderBy={orderBy}
-        // order={order}
+        title="Pairs which are predicted to not remain Pools"
+        orderBy="allocLoss"
+        order="asc"
         columns={[
           // {
           //   key: "id",
@@ -65,14 +68,17 @@ export default function AlmostUpcomingPoolTable({ pairs, ...rest }) {
             },
           },
           {
-            key: "accVolume",
-            label: "Volume",
-            render: (row) => formatCurrency(row.accVolume),
-          },
-          {
-            key: "reason",
-            label: "Reason",
-            render: (row) => row.reason,
+            key: "allocLoss",
+            label: "Allocation Loss",
+            render: (row) => (
+              <Typography variant="subtitle2" noWrap>
+                <Percent
+                  className={classes.lost}
+                  percent={Number(row.allocLoss).toFixed(2)}
+                  display="inline"
+                />
+              </Typography>
+            )
           },
         ]}
         rows={rows}

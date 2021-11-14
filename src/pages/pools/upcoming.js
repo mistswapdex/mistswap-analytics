@@ -1,4 +1,9 @@
-import { AppShell, UpcomingPoolTable, AlmostUpcomingPoolTable } from "app/components";
+import {
+  AppShell,
+  UpcomingPoolTable,
+  AlmostUpcomingPoolTable,
+  UpcomingRemovedPoolTable
+} from "app/components";
 import {
   getApollo,
   getUpcomingFarmPairs,
@@ -7,6 +12,7 @@ import {
   useInterval,
 } from "app/core";
 import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
+import currentFarms from "../../core/currentFarms";
 
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
@@ -113,6 +119,21 @@ function UpcomingPoolsPage() {
   }));
   console.log('pairs', pairs)
 
+  const removedPairs = Object.entries(currentFarms).filter(([k, v]) => {
+    for (let o of pairs) {
+	  if (o.id === k) {
+	    return false;
+	  }
+	}
+
+	return true;
+  })
+  .map(([k, v]) => ({
+    ...([...data.pairs].find((o) => o.id === k)),
+    allocLoss: (0 - v.allocPoint) / 1000000000 * 100,
+  }))
+  console.log(removedPairs, 'removedPairs')
+
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
 
   function getTitle() {
@@ -148,6 +169,11 @@ function UpcomingPoolsPage() {
       <AlmostUpcomingPoolTable
         title="Pairs which are close to becoming Pools"
         pairs={almostPairs}
+        rowsPerPage={30}
+      />
+      <UpcomingRemovedPoolTable
+        title="Pairs which are predicted to not remain Pools"
+        pairs={removedPairs}
         rowsPerPage={30}
       />
     </AppShell>
