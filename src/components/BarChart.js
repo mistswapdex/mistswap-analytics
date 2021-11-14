@@ -17,7 +17,7 @@ import {
   useTooltipInPortal,
 } from "@visx/tooltip";
 import { bisector, extent, max } from "d3-array";
-import { currencyFormatter, oneMonth, oneWeek } from "app/core";
+import { formatCurrency, oneMonth, oneWeek } from "app/core";
 import letterFrequency, {
   LetterFrequency,
 } from "@visx/mock-data/lib/mocks/letterFrequency";
@@ -94,7 +94,7 @@ export default function BarChart({
 
   const [overlay, setOverlay] = useState({
     title,
-    value: currencyFormatter.format(data[data.length - 1]?.value),
+    value: formatCurrency(data[data.length - 1]?.value),
     date: data[data.length - 1]?.date,
   });
 
@@ -184,7 +184,7 @@ export default function BarChart({
 
                     setOverlay({
                       ...overlay,
-                      value: currencyFormatter.format(
+                      value: formatCurrency(
                         data[data.length - 1].value
                       ),
                       date: data[data.length - 1].date,
@@ -197,7 +197,7 @@ export default function BarChart({
                   const left = barX + barWidth / 2;
                   setOverlay({
                     ...overlay,
-                    value: currencyFormatter.format(d.value),
+                    value: formatCurrency(d.value),
                     date: d.date,
                   });
                   showTooltip({

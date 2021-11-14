@@ -13,7 +13,7 @@ import React from "react";
 import SortableTable from "./SortableTable";
 import { TOKEN_DENY } from "app/core/constants";
 import TokenIcon from "./TokenIcon";
-import { currencyFormatter } from "app/core";
+import { formatCurrency } from "app/core";
 import { useQuery } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
@@ -96,19 +96,19 @@ export default function TokenTable({ tokens, title }) {
             key: "liquidityUSD",
             align: "right",
             label: "Liquidity",
-            render: (row) => currencyFormatter.format(row.liquidityUSD),
+            render: (row) => formatCurrency(row.liquidityUSD),
           },
           {
             key: "volumeYesterday",
             align: "right",
             label: "Volume (24h)",
-            render: (row) => currencyFormatter.format(row.volumeYesterday),
+            render: (row) => formatCurrency(row.volumeYesterday),
           },
           {
             key: "price",
             align: "right",
             label: "Price",
-            render: (row) => currencyFormatter.format(row.price),
+            render: (row) => formatCurrency(row.price),
           },
           {
             key: "priceChange",

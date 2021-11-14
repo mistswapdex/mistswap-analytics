@@ -13,7 +13,7 @@ import {
 } from "app/components";
 import { Box, Grid, Paper, Typography } from "@material-ui/core";
 import {
-  currencyFormatter,
+  formatCurrency,
   ethPriceQuery,
   getApollo,
   getOneDayBlock,
@@ -91,8 +91,6 @@ function TokenPage() {
   } = useQuery(ethPriceQuery, {
     pollInterval: 60000,
   });
-
-  console.log({ token })
 
   const { data: oneDayEthPriceData } = useQuery(oneDayEthPriceQuery);
 

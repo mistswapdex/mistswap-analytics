@@ -16,7 +16,6 @@ import {
 import {
   barUserQuery,
   blockQuery,
-  currencyFormatter,
   decimalFormatter,
   ethPriceQuery,
   formatCurrency,
@@ -501,12 +500,12 @@ function UserPage() {
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
-                            {currencyFormatter.format(user.entryUSD)}
+                            {formatCurrency(user.entryUSD)}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
-                            {currencyFormatter.format(user.exitUSD)}
+                            {formatCurrency(user.exitUSD)}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -519,13 +518,13 @@ function UserPage() {
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
-                            {currencyFormatter.format(pair.reserveUSD * share)}
+                            {formatCurrency(pair.reserveUSD * share)}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
                             {decimalFormatter.format(pendingSushi)} (
-                            {currencyFormatter.format(
+                            {formatCurrency(
                               pendingSushi * sushiPrice
                             )}
                             )
@@ -534,12 +533,12 @@ function UserPage() {
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
                             {decimalFormatter.format(user.sushiHarvested)} (
-                            {currencyFormatter.format(user.sushiHarvestedUSD)})
+                            {formatCurrency(user.sushiHarvestedUSD)})
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
                           <Typography noWrap variant="body2">
-                            {currencyFormatter.format(
+                            {formatCurrency(
                               parseFloat(pair.reserveUSD * share) +
                                 parseFloat(user.exitUSD) +
                                 parseFloat(user.sushiHarvestedUSD) +

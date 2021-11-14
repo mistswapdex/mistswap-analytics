@@ -1,4 +1,4 @@
-import { currencyFormatter, decimalFormatter } from "app/core";
+import { formatCurrency, decimalFormatter } from "app/core";
 
 import Link from "./Link";
 import React from "react";
@@ -69,7 +69,7 @@ export default function Transactions({ transactions, txCount }) {
             key: "amountUSD",
             align: "right",
             label: "Value",
-            render: (row) => currencyFormatter.format(row.amountUSD),
+            render: (row) => formatCurrency(row.amountUSD),
           },
           {
             key: "amount0",

@@ -5,7 +5,7 @@ import PairIcon from "./PairIcon";
 import Percent from "./Percent";
 import React from "react";
 import SortableTable from "./SortableTable";
-import { currencyFormatter } from "app/core";
+import { formatCurrency } from "app/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,32 +78,31 @@ export default function PairTable({ pairs, title, ...rest }) {
           },
           {
             key: "reserveUSD",
-            render: (row) => currencyFormatter.format(row.reserveUSD),
+            render: (row) => formatCurrency(row.reserveUSD),
             align: "right",
             label: "Liquidity",
           },
           {
             key: "oneDayVolume",
-            render: (row) => currencyFormatter.format(row.oneDayVolume),
+            render: (row) => formatCurrency(row.oneDayVolume),
             align: "right",
             label: "Volume (24h)",
           },
           {
             key: "sevenDayVolume",
-            render: (row) => currencyFormatter.format(row.sevenDayVolume),
+            render: (row) => formatCurrency(row.sevenDayVolume),
             align: "right",
             label: "Volume (7d)",
           },
           {
             key: "oneDayFees",
-            render: (row) => currencyFormatter.format(row.oneDayFees),
+            render: (row) => formatCurrency(row.oneDayFees),
             align: "right",
             label: "Fees (24h)",
           },
           {
             key: "sevenDayFees",
-            render: (row) =>
-              currencyFormatter.format(row.sevenDayFees),
+            render: (row) => formatCurrency(row.sevenDayFees),
             align: "right",
             label: "Fees (7d)",
           },

@@ -1,5 +1,5 @@
 import { Avatar, Box } from "@material-ui/core";
-import { currencyFormatter, decimalFormatter } from "app/core";
+import { formatCurrency, decimalFormatter } from "app/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import AddressAvatar from "./AddressAvatar";
@@ -69,7 +69,7 @@ export default function LiquidityProviderList({
             label: "Liquidity Tokens Staked USD",
             align: "right",
             render: (row) =>
-              currencyFormatter.format((row.amount / 1e18) * shareValueUSD),
+              formatCurrency((row.amount / 1e18) * shareValueUSD),
           },
         ]}
         rows={pool.users}

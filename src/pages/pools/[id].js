@@ -17,7 +17,7 @@ import {
   useTheme,
 } from "@material-ui/core";
 import {
-  currencyFormatter,
+  formatCurrency,
   ethPriceQuery,
   getApollo,
   getEthPrice,
@@ -244,7 +244,7 @@ function PoolPage() {
         {/* <Grid item xs={12} sm={4}>
           <KPI
             title="Fees (24h)"
-            value={currencyFormatter.format(
+            value={formatCurrency(
               pool.liquidityPair.volumeUSD * 0.03
             )}
           />
