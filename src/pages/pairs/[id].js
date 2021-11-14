@@ -399,10 +399,14 @@ function PairPage(props) {
               {pair.id}
             </Typography>,
             <Typography variant="body2" noWrap>
-              {pair.token0.id}
+              <Link href={`/tokens/${pair.token0.id}`}>
+                {pair.token0.id}
+              </Link>
             </Typography>,
             <Typography variant="body2" noWrap>
-              {pair.token1.id}
+              <Link href={`/tokens/${pair.token1.id}`}>
+                {pair.token1.id}
+              </Link>
             </Typography>,
             <Link href={`https://smartscan.cash/address/${pair.id}`}>View</Link>,
           ]}
