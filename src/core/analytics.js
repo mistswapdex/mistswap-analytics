@@ -1,12 +1,8 @@
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID
-
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+// https://developer.matomo.org/guides/spa-tracking
 export const pageview = (url) => {
-  /*
-  window.gtag('config', GA_TRACKING_ID, {
-    page_path: url,
-  })
-  */
+  window._paq.push(['setCustomUrl', window.location.pathname]);
+  window._paq.push(['setDocumentTitle', document.title]);
+  window._paq.push(['trackPageView']);
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events

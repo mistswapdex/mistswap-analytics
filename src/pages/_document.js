@@ -1,6 +1,5 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
-import { GA_TRACKING_ID } from '../core/analytics'
 import React from "react";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 //
@@ -104,6 +103,22 @@ export default class MyDocument extends Document {
           <script
             type="text/javascript"
             src="https://app.intotheblock.com/widget.js"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                var _paq = window._paq = window._paq || [];
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                  var u="//matomo.mistswap.fi/";
+                  _paq.push(['setTrackerUrl', u+'matomo.php']);
+                  _paq.push(['setSiteId', '2']);
+                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+                })();
+              `
+            }}
           />
         </Head>
         <body className="no-js">
