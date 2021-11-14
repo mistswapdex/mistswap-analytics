@@ -14,12 +14,14 @@ import {
 import {
   Brightness4Outlined,
   Brightness7Outlined,
+  CallMissed,
   CloseOutlined,
   Menu,
 } from "@material-ui/icons";
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import Link from "./Link";
 import clsx from "clsx";
 import { darkModeVar } from "app/core";
 import useDetect from "../core/hooks/useDetect";
@@ -158,6 +160,17 @@ export default function AppBar({
             {page.charAt(0).toUpperCase() + page.slice(1)}
           </Typography>
         </div>
+        <Tooltip title="Return to MistSwap" enterDelay={300}>
+          <Link href={`https://app.mistswap.fi/swap`} variant="body2">
+            <IconButton
+              edge="end"
+              color="default"
+              aria-label="theme toggle"
+            >
+              <CallMissed />
+            </IconButton>
+          </Link>
+        </Tooltip>
         <Tooltip title="Toggle theme" enterDelay={300}>
           <IconButton
             edge="end"
