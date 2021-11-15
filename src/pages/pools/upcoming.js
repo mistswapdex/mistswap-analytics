@@ -95,7 +95,7 @@ function UpcomingPoolsPage() {
     });
 
   const pairs3 = pairs2.map((v) => {
-    const preAllocation = v.accVolume * Math.log(v.volatility);
+    const preAllocation = v.accVolume * Math.log(Math.max(Math.E, v.volatility));
 
     return {
       ...v,
