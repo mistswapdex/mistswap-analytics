@@ -35,6 +35,7 @@ function UpcomingPoolsPage() {
         "0x84e3ae3135d79536e032ee36dacc15e676400638": "", // PSN
         "0x8803805547b4b7dd1e4d9492a43bf6418447fcb0": "", // LZD
         "0x654adbec36ae3b61255368af2fbaf6302a18fcb5": "", // Akita
+        "0xb952907d7b55789209c32353269bab3f9316925b": "", // GEM
       };
       return ! (blacklist.hasOwnProperty(v.token0.id) || blacklist.hasOwnProperty(v.token1.id));
     })
