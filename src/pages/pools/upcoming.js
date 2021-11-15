@@ -117,8 +117,6 @@ function UpcomingPoolsPage() {
     }
   });
 
-  console.log('total: ', pairs.reduce((a, v) => a + v.allocation, 0))
-
   const almostPairs = pairs1.filter((v) => {
     for (let o of pairs) {
 	  if (o.id === v.id) {
@@ -137,7 +135,6 @@ function UpcomingPoolsPage() {
 	    ? `Not enough liquidity (${formatCurrency(3000 - v.reserveUSD)} minimum) for a long enough time`
 		: `Not enough volume (${formatCurrency(pairs[pairs.length - 1].accVolume - v.accVolume)} more)`,
   }));
-  console.log('pairs', pairs)
 
   const removedPairs = Object.entries(currentFarms).filter(([k, v]) => {
     for (let o of pairs) {
@@ -152,7 +149,22 @@ function UpcomingPoolsPage() {
     ...([...data.pairs].find((o) => o.id === k)),
     allocLoss: (0 - v.allocPoint) / 1000000000 * 100,
   }))
-  console.log(removedPairs, 'removedPairs')
+
+  console.log(`update info`, {
+    removedFarms: removedPairs.map((v) => ({
+      id: v.id,
+      pid: currentFarms[v.id].farmId,
+    })),
+    newFarms: pairs.filter((v) => ! currentFarms.hasOwnProperty(v.id)).map((v) => ({
+      id: v.id,
+      allocPoint: v.allocation,
+    })),
+    updateFarms: pairs.filter((v) => currentFarms.hasOwnProperty(v.id)).map((v) => ({
+      id: v.id,
+      pid: currentFarms[v.id].farmId,
+      allocPoint: v.allocation,
+    })),
+  });
 
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
 
