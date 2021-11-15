@@ -297,10 +297,12 @@ export const farmReweightingPairsQuery = gql`
     $first:Int! = 1000
     $orderBy: String! = "reserveUSD"
     $orderDirection: String! = "desc"
+    $rangeBegin:Int! = 1634515200
+    $rangeEnd:Int! = 1637038800
   ) {
     pairs(first: $first, orderBy: $orderBy, orderDirection: $orderDirection) {
       ...pairFields
-      dayData(where: { date_gte: 1634515200 }, orderBy: date, order: desc) {
+      dayData(where: { date_gte: $rangeBegin, date_lte: $rangeEnd }, orderBy: date, order: desc) {
         date
         reserve0
         reserve1
