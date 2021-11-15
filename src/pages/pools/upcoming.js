@@ -45,6 +45,11 @@ function UpcomingPoolsPage() {
       accVolume: v.dayData.reduce((a, v) => a+Number.parseFloat(v.volumeUSD), 0),
     }))
     .sort((a, b) => b.accVolume - a.accVolume)
+    // remove dayData with no volume
+    .map((v) => ({
+      ...v,
+      dayData: v.dayData.filter((v) => v.volumeUSD !== '0'),
+    }))
     // remove pairs without sufficient dayData
     .filter((v) => v.dayData.length >= 2)
     // fix for pairs with limited dayData
