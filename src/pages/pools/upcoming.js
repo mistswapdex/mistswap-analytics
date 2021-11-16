@@ -11,7 +11,11 @@ import {
   formatCurrency,
   useInterval,
 } from "app/core";
-import { FIRST_REWEIGHT_TIME, REWEIGHTING_PERIOD } from "app/core/constants";
+import {
+  FIRST_REWEIGHT_TIME,
+  REWEIGHTING_PERIOD,
+  TIMELOCK_PERIOD,
+} from "app/core/constants";
 import currentFarms from "../../core/currentFarms";
 
 import Head from "next/head";
@@ -169,14 +173,16 @@ function UpcomingPoolsPage() {
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
 
   function getTitle() {
-    const timeUntilNextReweighting = REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)
+    // const timeUntil = REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)
+    const timeUntil = (1637301969 * 1000) - Date.now();
 
-    const days = Math.floor(timeUntilNextReweighting / (24*60*60*1000));
-    const hours = Math.floor((timeUntilNextReweighting % (24*60*60*1000)) / (60 * 60 * 1000));
-    const minutes = Math.floor((timeUntilNextReweighting % (60*60*1000)) / (60*1000));
-    const seconds = Math.floor((timeUntilNextReweighting % (60*1000)) / (1000));
+    const days = Math.floor(timeUntil / (24*60*60*1000));
+    const hours = Math.floor((timeUntil % (24*60*60*1000)) / (60 * 60 * 1000));
+    const minutes = Math.floor((timeUntil % (60*60*1000)) / (60*1000));
+    const seconds = Math.floor((timeUntil % (60*1000)) / (1000));
 
-    return `Upcoming Pools (Reweighting in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds)`;
+    // return `Upcoming Pools (Reweighting in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds)`;
+    return `Upcoming Pools (Farms go live in ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds)`;
   }
 
   const [ title, setTitle ] = useState(getTitle());
