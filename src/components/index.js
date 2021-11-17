@@ -32,5 +32,6 @@ export { default as TokenIcon } from "./TokenIcon";
 export { default as TokenTable } from "./TokenTable";
 export { default as Transactions } from "./Transactions";
 export { default as UpcomingPoolTable } from "./UpcomingPoolTable";
+export { default as UpcomingTimelockPoolTable } from "./UpcomingTimelockPoolTable";
 export { default as UpcomingRemovedPoolTable } from "./UpcomingRemovedPoolTable";
 export { default as Loading } from "./Loading";

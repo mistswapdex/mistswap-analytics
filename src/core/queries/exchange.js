@@ -297,8 +297,8 @@ export const farmReweightingPairsQuery = gql`
     $first:Int! = 1000
     $orderBy: String! = "reserveUSD"
     $orderDirection: String! = "desc"
-    $rangeBegin:Int! = 1634515200
-    $rangeEnd:Int! = 1637038800
+    $rangeBegin:Int! = 1637038800
+    $rangeEnd:Int! = 1639630800
   ) {
     pairs(first: $first, orderBy: $orderBy, orderDirection: $orderDirection) {
       ...pairFields
