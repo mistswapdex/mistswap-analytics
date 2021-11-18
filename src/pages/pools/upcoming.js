@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 import {
   AppShell,
   UpcomingPoolTable,
@@ -265,7 +267,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: client.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: serverRuntimeConfig.revalidateTime,
   };
 }
 

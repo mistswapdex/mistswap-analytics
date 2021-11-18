@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 import { AppShell, PairTable, SortableTable } from "app/components";
 import { getApollo, getPairs, pairsQuery, useInterval } from "app/core";
 
@@ -30,7 +32,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: client.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: serverRuntimeConfig.revalidateTime,
   };
 }
 

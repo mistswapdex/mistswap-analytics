@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 import { AppShell, GainersList } from "app/components";
 import { gainersQuery, getApollo, getGainers, useInterval } from "app/core";
 
@@ -34,7 +36,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: client.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: serverRuntimeConfig.revalidateTime,
   };
 }
 

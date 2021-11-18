@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 import {
   AppShell,
   AreaChart,
@@ -173,7 +175,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: client.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: serverRuntimeConfig.revalidateTime,
   };
 }
 

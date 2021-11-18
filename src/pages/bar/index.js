@@ -1,3 +1,5 @@
+import getConfig from 'next/config';
+const { serverRuntimeConfig } = getConfig();
 import { AppShell, Curves, KPI } from "app/components";
 import { Grid, Paper, useTheme } from "@material-ui/core";
 import {
@@ -356,7 +358,7 @@ export async function getStaticProps() {
     props: {
       initialApolloState: client.cache.extract(),
     },
-    revalidate: 1,
+    revalidate: serverRuntimeConfig.revalidateTime,
   };
 }
 

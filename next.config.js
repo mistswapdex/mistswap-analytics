@@ -8,4 +8,7 @@ module.exports = withPWA({
     // scope: "/",
     // sw: "service-worker.js",
   },
+  serverRuntimeConfig: {
+    revalidateTime: Number.parseInt(process.env.REVALIDATE_TIME) || 1,
+  },
 });
