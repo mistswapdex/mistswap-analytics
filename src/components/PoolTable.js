@@ -62,10 +62,16 @@ export default function PoolTable({ pools, ...rest }) {
           //   render: (row) => Number(row.roiPerHour) * 1000,
           // },
           {
+            key: "rewardPerDay",
+            label: "Total pool reward",
+            render: (row) =>
+              `${Number(row.rewardPerThousand * row.tvl / 1000).toFixed(2)} MIST/day`,
+          },
+          {
             key: "rewardPerThousand",
             label: "Reward per $1000",
             render: (row) =>
-              `${Number(row.rewardPerThousand).toFixed(2)} MIST per day`,
+              `${Number(row.rewardPerThousand).toFixed(2)} MIST/day`,
           },
           {
             key: "roi",

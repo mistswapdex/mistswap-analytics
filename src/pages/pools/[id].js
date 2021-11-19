@@ -199,12 +199,9 @@ function PoolPage() {
           </Grid>
           <Grid item xs={12} sm="auto" className={classes.links}>
             <Link
-              href={`https://app.mistswap.fi/farms/${
-                pool.liquidityPair.token0.symbol
-              }-${pool.liquidityPair.token1.symbol.replace(
-                "WBCH",
-                "BCH"
-              )}%20MLP`}
+              href={`https://app.mistswap.fi/add/${
+                pool.liquidityPair.token0.id
+              }/${pool.liquidityPair.token1.id}`}
               target="_blank"
               variant="body1"
             >
@@ -226,16 +223,16 @@ function PoolPage() {
       </PageHeader>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={4}>
+        {/* <Grid item xs={12} sm={4}>
           <KPI
             title="~ SLP Age"
             value={`${(
               parseFloat(pool.slpAge) / parseFloat(pool.balance / 1e18)
             ).toFixed(2)} Days`}
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} sm={4}>
-          <KPI title="Users" value={pool.userCount} />
+          <KPI title="Users" value={pool.users.length} />
         </Grid>
         <Grid item xs={12} sm={4}>
           <KPI
@@ -243,14 +240,14 @@ function PoolPage() {
             value={`${(pool.balance / 1e18).toFixed(4)} SLP`}
           />
         </Grid>
-        {/* <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4}>
           <KPI
-            title="Fees (24h)"
+            title="Total Fees"
             value={formatCurrency(
               pool.liquidityPair.volumeUSD * 0.03
             )}
           />
-        </Grid> */}
+        </Grid>
         {/* 
         <Grid item xs={12}>
           <Paper
@@ -276,7 +273,7 @@ function PoolPage() {
           </Paper>
         </Grid> */}
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Paper
             variant="outlined"
             style={{
@@ -298,7 +295,7 @@ function PoolPage() {
               )}
             </ParentSize>
           </Paper>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <Paper
             variant="outlined"
@@ -315,15 +312,15 @@ function PoolPage() {
                   width={width}
                   height={height}
                   margin={{ top: 64, right: 32, bottom: 0, left: 64 }}
-                  data={[slpDeposited, slpWithdrawn]}
-                  labels={["SLP Deposited", "SLP Age Withdrawn"]}
+                  data={[slpDeposited/*, slpWithdrawn*/]}
+                  labels={["SLP Deposited"/*, "SLP Age Withdrawn"*/]}
                 />
               )}
             </ParentSize>
           </Paper>
         </Grid>
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Paper
             variant="outlined"
             style={{
@@ -345,9 +342,9 @@ function PoolPage() {
               )}
             </ParentSize>
           </Paper>
-        </Grid>
+        </Grid> */}
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Paper
             variant="outlined"
             style={{
@@ -369,7 +366,7 @@ function PoolPage() {
               )}
             </ParentSize>
           </Paper>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12}>
           <Paper
