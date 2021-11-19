@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = true;
+const showTimelock = false;
 
 function UpcomingPoolsPage() {
   const {
@@ -37,6 +37,9 @@ function UpcomingPoolsPage() {
 
   const FARM_COUNT = 30;
 
+  let pairs = [];
+  let almostPairs = [];
+  let removedPairs = [];
   if (! showTimelock) {
     const pairs1 = [...data.pairs]
       // remove pairs containing naughty tokens
@@ -117,7 +120,7 @@ function UpcomingPoolsPage() {
     const MIN_ALLOCATION = 0.0025;
     const allocationSum = pairs3.map((v) => v.preAllocation).reduce((a, v) => a+v, 0) + (MIN_ALLOCATION * FARM_COUNT);
 
-    const pairs = pairs3.map((v) => {
+    pairs = pairs3.map((v) => {
       const allocation = Math.floor(1000000000 * (
         MIN_ALLOCATION + (v.preAllocation / allocationSum)) / (1 + (MIN_ALLOCATION * FARM_COUNT))
       );
@@ -128,7 +131,7 @@ function UpcomingPoolsPage() {
       }
     });
 
-    const almostPairs = pairs1.filter((v) => {
+    almostPairs = pairs1.filter((v) => {
       for (let o of pairs) {
         if (o.id === v.id) {
           return false;
@@ -147,7 +150,7 @@ function UpcomingPoolsPage() {
       	: `Not enough volume (${formatCurrency(pairs[pairs.length - 1].accVolume - v.accVolume)} more)`,
     }));
 
-    const removedPairs = Object.entries(showTimelock ? timelockFarms : currentFarms).filter(([k, v]) => {
+    removedPairs = Object.entries(showTimelock ? timelockFarms : currentFarms).filter(([k, v]) => {
       for (let o of pairs) {
         if (o.id === k) {
           return false;
