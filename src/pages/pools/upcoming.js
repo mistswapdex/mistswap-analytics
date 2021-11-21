@@ -150,7 +150,7 @@ function UpcomingPoolsPage() {
       	: `Not enough volume (${formatCurrency(pairs[pairs.length - 1].accVolume - v.accVolume)} more)`,
     }));
 
-    removedPairs = Object.entries(showTimelock ? timelockFarms : currentFarms).filter(([k, v]) => {
+    removedPairs = Object.entries(currentFarms).filter(([k, v]) => {
       for (let o of pairs) {
         if (o.id === k) {
           return false;
