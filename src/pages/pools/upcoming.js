@@ -248,12 +248,12 @@ function UpcomingPoolsPage() {
             rowsPerPage={FARM_COUNT}
           />
           <AlmostUpcomingPoolTable
-            title="Pairs which are close to becoming Pools"
+            title="Pairs which are close to being in pool selection"
             pairs={almostPairs}
             rowsPerPage={30}
           />
           <UpcomingRemovedPoolTable
-            title="Pairs which are predicted to not remain Pools"
+            title="Current pools which are predicted to fall out of ranking"
             pairs={removedPairs}
             rowsPerPage={30}
           />
