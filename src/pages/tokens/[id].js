@@ -11,6 +11,7 @@ import {
   PairTable,
   Percent,
   TokenIcon,
+  TokenDetail,
   Transactions,
 } from "app/components";
 import { Box, Grid, Paper, Typography } from "@material-ui/core";
@@ -30,6 +31,7 @@ import {
   tokenQuery,
   transactionsQuery,
   useInterval,
+  TokenInfo,
 } from "app/core";
 
 import Head from "next/head";
@@ -333,6 +335,149 @@ function TokenPage() {
             <Link href={`https://smartscan.cash/address/${token.id}`}>View</Link>,
           ]}
         />
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item xs={12} sm={12} md={12}>
+            <Grid item xs={12} md={12}>
+              <TokenDetail
+                title="Description"
+                value={
+                  TokenInfo[token.id]
+                    ? TokenInfo[token.id]['description']
+                    : (
+                      <div>
+                        No description exists yet for this token. Please go 
+                        <Link
+                          href={`https://github.com/mistswapdex/mistswap-analytics`}
+                          target="_blank"
+                          variant="body1"
+                        >
+                        {' '}here{' '}
+                        </Link>
+                        to update information about a token.
+                      </div>
+                    )
+                }
+              />
+            </Grid>
+            { TokenInfo[token.id] && TokenInfo[token.id].discord && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Discord"
+                  value=<Link
+                    href={`https://discord.gg/invite/${TokenInfo[token.id]['discord']}`}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['discord'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].telegram && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Telegram"
+                  value=<Link
+                    href={`https://t.me/${TokenInfo[token.id]['telegram']}`}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['telegram'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].twitter && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Twitter"
+                  value=<Link
+                    href={`https://twitter.com/${TokenInfo[token.id]['twitter']}`}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['twitter'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].website && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Website"
+                  value=<Link
+                    href={TokenInfo[token.id]['website']}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['website'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].docs && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Docs"
+                  value=<Link
+                    href={TokenInfo[token.id]['docs']}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['docs'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].whitepaper && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="White Paper"
+                  value=<Link
+                    href={TokenInfo[token.id]['whitepaper']}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['whitepaper'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].github && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Github"
+                  value=<Link
+                    href={`https://github.com/${TokenInfo[token.id]['github']}`}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['github'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+            { TokenInfo[token.id] && TokenInfo[token.id].gitlab && (
+              <Grid item xs={12} md={12}>
+                <TokenDetail
+                  title="Github"
+                  value=<Link
+                    href={`https://gitlab.com/${TokenInfo[token.id]['gitlab']}`}
+                    target="_blank"
+                    variant="body1"
+                  >
+                    { TokenInfo[token.id]['gitlab'] }
+                  </Link>
+                />
+              </Grid>
+            ) }
+          </Grid>
+        </Grid>
       </Box>
 
       <PairTable title="Pairs" pairs={pairs} />

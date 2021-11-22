@@ -14,6 +14,10 @@ git clone https://github.com/mistswapdex/mistswap-analytics.git && cd mistswap-a
 
 Add your logo by opening a PR against mistswapdex/assets
 
+## Add token information
+
+Edit src/core/tokeninfo.js to add your token information.
+
 ## Licence
 
 MIT

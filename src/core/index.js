@@ -5,3 +5,4 @@ export * from "./hooks";
 export * from "./format";
 export * from "./queries";
 export * from "./timestamps";
+export * from "./tokeninfo";

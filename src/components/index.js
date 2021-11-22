@@ -28,6 +28,7 @@ export { default as Search } from "./Search";
 export { default as Sushi } from "./Sushi";
 export { default as SortableTable } from "./SortableTable";
 export { default as SortableTableHead } from "./SortableTableHead";
+export { default as TokenDetail } from "./TokenDetail";
 export { default as TokenIcon } from "./TokenIcon";
 export { default as TokenTable } from "./TokenTable";
 export { default as Transactions } from "./Transactions";
