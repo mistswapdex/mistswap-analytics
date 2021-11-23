@@ -13,7 +13,7 @@ import React from "react";
 import SortableTable from "./SortableTable";
 import { TOKEN_DENY } from "app/core/constants";
 import TokenIcon from "./TokenIcon";
-import { formatCurrency } from "app/core";
+import { formatCurrency, formatPrice } from "app/core";
 import { useQuery } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
@@ -108,7 +108,7 @@ export default function TokenTable({ tokens, title }) {
             key: "price",
             align: "right",
             label: "Price",
-            render: (row) => formatCurrency(row.price),
+            render: (row) => formatPrice(row.price),
           },
           {
             key: "priceChange",
