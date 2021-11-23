@@ -398,16 +398,16 @@ function PairPage(props) {
           ]}
           bodyCells={[
             <Typography variant="body2" noWrap>
-              {pair.id}
+              {toChecksumAddress(pair.id)}
             </Typography>,
             <Typography variant="body2" noWrap>
               <Link href={`/tokens/${pair.token0.id}`}>
-                {pair.token0.id}
+                {toChecksumAddress(pair.token0.id)}
               </Link>
             </Typography>,
             <Typography variant="body2" noWrap>
               <Link href={`/tokens/${pair.token1.id}`}>
-                {pair.token1.id}
+                {toChecksumAddress(pair.token1.id)}
               </Link>
             </Typography>,
             <Link href={`https://smartscan.cash/address/${pair.id}`}>View</Link>,

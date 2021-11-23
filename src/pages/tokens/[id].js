@@ -39,6 +39,7 @@ import { ParentSize } from "@visx/responsive";
 import { makeStyles } from "@material-ui/core/styles";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { toChecksumAddress } from 'web3-utils';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -331,7 +332,7 @@ function TokenPage() {
           bodyCells={[
             token.name,
             token.symbol,
-            token.id,
+            toChecksumAddress(token.id),
             <Link href={`https://smartscan.cash/address/${token.id}`}>View</Link>,
           ]}
         />
