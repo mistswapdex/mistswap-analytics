@@ -24,6 +24,10 @@ export const decimalFormatter = new Intl.NumberFormat(locales, {
 export const formatDate = timeFormat("%b %d, '%y");
 
 export function formatCurrency(value) {
+  return currencyFormatter.format(value);
+}
+
+export function formatPrice(value) {
   if (value < 10) {
     return tinyCurrencyFormatter.format(value);
   }

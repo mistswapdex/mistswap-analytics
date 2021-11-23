@@ -32,6 +32,7 @@ import {
   transactionsQuery,
   useInterval,
   TokenInfo,
+  formatPrice,
 } from "app/core";
 
 import Head from "next/head";
@@ -287,7 +288,7 @@ function TokenPage() {
           <Grid item xs={12} md={12}>
             <KPI
               title="Price (24h)"
-              value={formatCurrency(price || 0)}
+              value={formatPrice(price || 0)}
               difference={priceChange}
             />
           </Grid>
