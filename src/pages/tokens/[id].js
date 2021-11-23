@@ -178,7 +178,7 @@ function TokenPage() {
     <AppShell>
       <Head>
         <title>
-          {formatCurrency(price || 0)} | {token.symbol} | MistSwap
+          {formatPrice(price || 0)} | {token.symbol} | MistSwap
           Analytics
         </title>
       </Head>
@@ -198,7 +198,7 @@ function TokenPage() {
             </Box>
             <Box display="flex" alignItems="center" className={classes.price}>
               <Typography variant="h6" component="div">
-                {formatCurrency(price || 0)}
+                {formatPrice(price || 0)}
               </Typography>
               <Percent percent={priceChange} ml={1} />
             </Box>
@@ -238,6 +238,7 @@ function TokenPage() {
                   margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
                   tooltipDisabled
                   overlayEnabled
+                  priceFormat
                 />
               )}
             </ParentSize>
