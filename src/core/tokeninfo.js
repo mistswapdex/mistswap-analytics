@@ -32,6 +32,17 @@ export const TokenInfo = {
     website: null,
     whitepaper: null,
   },
+  "0x9192940099fdb2338b928de2cad9cd1525fea881": {
+    description: 'BCHPad is a DeFi Launchpad for Smart Bitcoin Cash.',
+    discord: null,
+    docs: null,
+    github: 'BCHPad',
+    gitlab: null,
+    telegram: 'bchpad',
+    twitter: 'bchpad',
+    website: 'https://bchpad.cash',
+    whitepaper: 'https://www.bchpad.cash/litepaper.pdf',
+  },
 }
 
 export function fetchTokenInfo() {
