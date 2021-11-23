@@ -6,6 +6,7 @@ import SortableTable from "./SortableTable";
 import { Typography } from "@material-ui/core";
 import formatDistance from "date-fns/formatDistance";
 import { makeStyles } from "@material-ui/core/styles";
+import { toChecksumAddress } from "web3-utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -101,7 +102,7 @@ export default function Transactions({ transactions, txCount }) {
             label: "To",
             render: (row) => (
               <Link href={`https://smartscan.cash/address/${row.to}`}>
-                {row.to}
+                {toChecksumAddress(row.to)}
               </Link>
             ),
           },
