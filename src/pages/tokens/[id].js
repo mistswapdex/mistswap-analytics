@@ -1,4 +1,5 @@
 import getConfig from 'next/config';
+import React, { useEffect, useState } from 'react'
 const { serverRuntimeConfig } = getConfig();
 import {
   AppShell,
@@ -32,6 +33,8 @@ import {
   transactionsQuery,
   useInterval,
   TokenInfo,
+  fetchTokenInfo,
+  formatPrice,
 } from "app/core";
 
 import Head from "next/head";
@@ -39,6 +42,7 @@ import { ParentSize } from "@visx/responsive";
 import { makeStyles } from "@material-ui/core/styles";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { toChecksumAddress } from 'web3-utils';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -81,6 +85,16 @@ function TokenPage() {
   }
 
   const classes = useStyles();
+
+  const [tokens, setTokens] = useState({...TokenInfo})
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const tokens = await fetchTokenInfo()
+      setTokens(tokens)
+    }
+    fetchData()
+  }, [])
 
   const id = router.query.id.toLowerCase();
 
@@ -177,7 +191,7 @@ function TokenPage() {
     <AppShell>
       <Head>
         <title>
-          {formatCurrency(price || 0)} | {token.symbol} | MistSwap
+          {formatPrice(price || 0)} | {token.symbol} | MistSwap
           Analytics
         </title>
       </Head>
@@ -197,7 +211,7 @@ function TokenPage() {
             </Box>
             <Box display="flex" alignItems="center" className={classes.price}>
               <Typography variant="h6" component="div">
-                {formatCurrency(price || 0)}
+                {formatPrice(price || 0)}
               </Typography>
               <Percent percent={priceChange} ml={1} />
             </Box>
@@ -237,6 +251,7 @@ function TokenPage() {
                   margin={{ top: 125, right: 0, bottom: 0, left: 0 }}
                   tooltipDisabled
                   overlayEnabled
+                  priceFormat
                 />
               )}
             </ParentSize>
@@ -287,7 +302,7 @@ function TokenPage() {
           <Grid item xs={12} md={12}>
             <KPI
               title="Price (24h)"
-              value={formatCurrency(price || 0)}
+              value={formatPrice(price || 0)}
               difference={priceChange}
             />
           </Grid>
@@ -331,7 +346,7 @@ function TokenPage() {
           bodyCells={[
             token.name,
             token.symbol,
-            token.id,
+            toChecksumAddress(token.id),
             <Link href={`https://smartscan.cash/address/${token.id}`}>View</Link>,
           ]}
         />
@@ -346,8 +361,8 @@ function TokenPage() {
               <TokenDetail
                 title="Description"
                 value={
-                  TokenInfo[token.id]
-                    ? TokenInfo[token.id]['description']
+                  (tokens[token.id] || {})['description']
+                    ? tokens[token.id]['description']
                     : (
                       <div>
                         No description exists yet for this token. Please go 
@@ -364,114 +379,114 @@ function TokenPage() {
                 }
               />
             </Grid>
-            { TokenInfo[token.id] && TokenInfo[token.id].discord && (
+            { tokens[token.id] && tokens[token.id].discord && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Discord"
                   value=<Link
-                    href={`https://discord.gg/invite/${TokenInfo[token.id]['discord']}`}
+                    href={`https://discord.gg/invite/${tokens[token.id]['discord']}`}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['discord'] }
+                    { tokens[token.id]['discord'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].telegram && (
+            { tokens[token.id] && tokens[token.id].telegram && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Telegram"
                   value=<Link
-                    href={`https://t.me/${TokenInfo[token.id]['telegram']}`}
+                    href={`https://t.me/${tokens[token.id]['telegram']}`}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['telegram'] }
+                    { tokens[token.id]['telegram'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].twitter && (
+            { tokens[token.id] && tokens[token.id].twitter && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Twitter"
                   value=<Link
-                    href={`https://twitter.com/${TokenInfo[token.id]['twitter']}`}
+                    href={`https://twitter.com/${tokens[token.id]['twitter']}`}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['twitter'] }
+                    { tokens[token.id]['twitter'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].website && (
+            { tokens[token.id] && tokens[token.id].website && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Website"
                   value=<Link
-                    href={TokenInfo[token.id]['website']}
+                    href={tokens[token.id]['website']}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['website'] }
+                    { tokens[token.id]['website'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].docs && (
+            { tokens[token.id] && tokens[token.id].docs && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Docs"
                   value=<Link
-                    href={TokenInfo[token.id]['docs']}
+                    href={tokens[token.id]['docs']}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['docs'] }
+                    { tokens[token.id]['docs'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].whitepaper && (
+            { tokens[token.id] && tokens[token.id].whitepaper && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="White Paper"
                   value=<Link
-                    href={TokenInfo[token.id]['whitepaper']}
+                    href={tokens[token.id]['whitepaper']}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['whitepaper'] }
+                    { tokens[token.id]['whitepaper'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].github && (
+            { tokens[token.id] && tokens[token.id].github && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Github"
                   value=<Link
-                    href={`https://github.com/${TokenInfo[token.id]['github']}`}
+                    href={`https://github.com/${tokens[token.id]['github']}`}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['github'] }
+                    { tokens[token.id]['github'] }
                   </Link>
                 />
               </Grid>
             ) }
-            { TokenInfo[token.id] && TokenInfo[token.id].gitlab && (
+            { tokens[token.id] && tokens[token.id].gitlab && (
               <Grid item xs={12} md={12}>
                 <TokenDetail
                   title="Github"
                   value=<Link
-                    href={`https://gitlab.com/${TokenInfo[token.id]['gitlab']}`}
+                    href={`https://gitlab.com/${tokens[token.id]['gitlab']}`}
                     target="_blank"
                     variant="body1"
                   >
-                    { TokenInfo[token.id]['gitlab'] }
+                    { tokens[token.id]['gitlab'] }
                   </Link>
                 />
               </Grid>
