@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = true;
+const showTimelock = false;
 
 function UpcomingPoolsPage() {
   const {
@@ -151,6 +151,10 @@ function UpcomingPoolsPage() {
     }));
 
     removedPairs = Object.entries(currentFarms).filter(([k, v]) => {
+      if (v.allocPoint == 0) {
+        return true;
+      }
+
       for (let o of pairs) {
         if (o.id === k) {
           return false;
