@@ -43,7 +43,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
           "WBCH",
           "BCH"
         )}-${pair.token1.symbol.replace("WBCH", "BCH")}`,
-        allocChangePercent: currentFarms.hasOwnProperty(pair.id)
+        allocChangePercent: (currentFarms.hasOwnProperty(pair.id) && currentFarms[pair.id].allocPoint != 0)
           ? ((pair.allocation - currentFarms[pair.id].allocPoint) / currentFarms[pair.id].allocPoint) * 100
           : 0, // new farm
       };

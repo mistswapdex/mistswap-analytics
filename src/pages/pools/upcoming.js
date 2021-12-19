@@ -152,7 +152,7 @@ function UpcomingPoolsPage() {
 
     removedPairs = Object.entries(currentFarms).filter(([k, v]) => {
       if (v.allocPoint == 0) {
-        return true;
+        return false;
       }
 
       for (let o of pairs) {
