@@ -51,6 +51,7 @@ function UpcomingPoolsPage() {
           "0x654adbec36ae3b61255368af2fbaf6302a18fcb5": "", // Akita
           "0xb952907d7b55789209c32353269bab3f9316925b": "", // GEM
           "0xbd53a8febe9bdceaccefaa45dc714ba718151c6b": "", // FARM
+          "0x2f0c5f437297f155492e711fc8d2d91f8735f255": "", // WEB
         };
         return ! (blacklist.hasOwnProperty(v.token0.id) || blacklist.hasOwnProperty(v.token1.id));
       })
