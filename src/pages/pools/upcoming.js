@@ -84,9 +84,25 @@ function UpcomingPoolsPage() {
         return v;
       })
 
+    const MISTBCHPAIRID = '0x674a71e69fe8d5ccff6fdcf9f1fa4262aa14b154';
+    const MISTBCHPAIRALLOC = 300000000;
+
+    const mistbchpair = pairs1
+      .filter((v) => v.id === MISTBCHPAIRID)
+      .map((v) => {
+        // make same format as pairs2
+        const volatility = 1;
+        return {
+          ...v,
+          volatility,
+        };
+      });
+
     const pairs2 = pairs1
-      // we choose top 30 by volume pairs
-      .slice(0, FARM_COUNT)
+      // mist/bch is treated special
+      .filter((v) => v.id !== MISTBCHPAIRID)
+      // we choose top 30 by volume pairs (removing mist/bch as it is treated special)
+      .slice(0, FARM_COUNT - 1)
       // calculate volatility of each pair
       .map((v) => {
         // TODO maybe we should multiply reserves by tokens price in usd?
@@ -120,18 +136,30 @@ function UpcomingPoolsPage() {
     });
 
     const MIN_ALLOCATION = 0.0025;
-    const allocationSum = pairs3.map((v) => v.preAllocation).reduce((a, v) => a+v, 0) + (MIN_ALLOCATION * FARM_COUNT);
+    const allocationSum = pairs3.map((v) => v.preAllocation).reduce((a, v) => a+v, 0) + (MIN_ALLOCATION * (FARM_COUNT - 1));
 
-    pairs = pairs3.map((v) => {
-      const allocation = Math.floor(1000000000 * (
-        MIN_ALLOCATION + (v.preAllocation / allocationSum)) / (1 + (MIN_ALLOCATION * FARM_COUNT))
-      );
+    pairs = [
+      ...mistbchpair.map((v) => {
+        const allocation = MISTBCHPAIRALLOC; // mist/bch is set to 30%
 
-      return {
-        ...v,
-        allocation,
-      }
-    });
+        return {
+          ...v,
+          allocation,
+        };
+      }),
+      ...pairs3.map((v) => {
+        const allocation = Math.floor((1000000000 - MISTBCHPAIRALLOC) * (
+          MIN_ALLOCATION + (v.preAllocation / allocationSum)) / (1 + (MIN_ALLOCATION * (FARM_COUNT - 1)))
+        );
+
+        return {
+          ...v,
+          allocation,
+        };
+      }),
+    ];
+
+    console.log('totalAlloc', pairs.reduce((a, v) => a+v.allocation, 0));
 
     almostPairs = pairs1.filter((v) => {
       for (let o of pairs) {
