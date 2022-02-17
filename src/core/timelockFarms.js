@@ -96,27 +96,27 @@ const farms = {
     allocPoint: 9154285,
   },
   "0xc20a4f3012ba2df47544d4926b19604fa777fb01": {
-    farmId: 45,
+    farmId: 46,
     allocPoint: 33935881,
   },
   "0x1d5a7bea34ee984d54af6ff355a1cb54c29eb546": {
-    farmId: 46,
+    farmId: 47,
     allocPoint: 16930892,
   },
   "0xe1b5bc09427710bc4d886ec49654944110b58134": {
-    farmId: 47,
+    farmId: 48,
     allocPoint: 12184556,
   },
   "0x380094357328488781a0fb31c271a13db7357c1e": {
-    farmId: 48,
+    farmId: 49,
     allocPoint: 10226248,
   },
   "0x8c14d399f3e12b702effd16cf27337637b38c84a": {
-    farmId: 49,
+    farmId: 50,
     allocPoint: 10861373,
   },
   "0x0151b25a5acf7f2f31bb2ab4358c9fa894db2cb2": {
-    farmId: 50,
+    farmId: 51,
     allocPoint: 4618896,
   },
 }
