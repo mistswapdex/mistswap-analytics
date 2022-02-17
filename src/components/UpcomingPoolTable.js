@@ -105,7 +105,7 @@ export default function UpcomingPoolTable({ pairs, ...rest }) {
               label: "Allocation Change",
               render: (row) => (
                 <Typography variant="subtitle2" noWrap>
-                  {(row.allocChangePercent != 0) ? (
+                  {(row.volatility == 1 || row.allocChangePercent != 0) ? (
                     <Percent
                       className={row.allocChangePercent >= 0 ? classes.gained : classes.lost}
                       percent={Number(row.allocChangePercent).toFixed(2)}
