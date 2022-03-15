@@ -56,6 +56,10 @@ function UpcomingPoolsPage() {
           "0x741746c2cf4117730d7f087e8492df595b4fd283": "", // DOGE
           "0x7ebeadb95724a006afaf2f1f051b13f4ebebf711": "", // KITTEN
           "0x8358758d3952a0146560f3584d3b219ed631e1ea": "", // CAO
+          "0xe5643aaf41ed9e5a56c3d5d1a049b43ac69950b2": "", // BCHDAO
+          "0x291361e2619cd0fbfd880be3c02926cfdd3c6a9f": "", // SUNCASHDAO
+          "0x7b82a3b1417cd21e67f745917a80cc0f53277b8c": "", // EVE
+          "0x4592b88618119e55e37ffcb28ede02bef6f3c5ba": "", // FRN
         };
         return ! (blacklist.hasOwnProperty(v.token0.id) || blacklist.hasOwnProperty(v.token1.id));
       })
