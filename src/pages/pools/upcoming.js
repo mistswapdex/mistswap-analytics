@@ -60,6 +60,7 @@ function UpcomingPoolsPage() {
           "0x291361e2619cd0fbfd880be3c02926cfdd3c6a9f": "", // SUNCASHDAO
           "0x7b82a3b1417cd21e67f745917a80cc0f53277b8c": "", // EVE
           "0x4592b88618119e55e37ffcb28ede02bef6f3c5ba": "", // FRN
+          "0xafacb0004a91267b58e720e13df570dc6863c854": "", // STO
         };
         return ! (blacklist.hasOwnProperty(v.token0.id) || blacklist.hasOwnProperty(v.token1.id));
       })
