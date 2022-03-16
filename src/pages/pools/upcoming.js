@@ -52,7 +52,6 @@ function UpcomingPoolsPage() {
           "0xb952907d7b55789209c32353269bab3f9316925b": "", // GEM
           "0xbd53a8febe9bdceaccefaa45dc714ba718151c6b": "", // FARM
           "0x2f0c5f437297f155492e711fc8d2d91f8735f255": "", // WEB
-          "0x7df65f158126898725f262378538b60db543c11a": "", // MGOT
           "0x741746c2cf4117730d7f087e8492df595b4fd283": "", // DOGE
           "0x7ebeadb95724a006afaf2f1f051b13f4ebebf711": "", // KITTEN
           "0x8358758d3952a0146560f3584d3b219ed631e1ea": "", // CAO
