@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = true;
+const showTimelock = false;
 
 function UpcomingPoolsPage() {
   const {
@@ -236,7 +236,7 @@ function UpcomingPoolsPage() {
   useInterval(() => Promise.all([getUpcomingFarmPairs]), 60000);
 
   function getTitleForPools() {
-    const timeUntil = REWEIGHTING_PERIOD - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)
+    const timeUntil = (REWEIGHTING_PERIOD - (24*60*60*1000)) - ((Date.now() - FIRST_REWEIGHT_TIME) % REWEIGHTING_PERIOD)
 
     const days = Math.floor(timeUntil / (24*60*60*1000));
     const hours = Math.floor((timeUntil % (24*60*60*1000)) / (60 * 60 * 1000));
