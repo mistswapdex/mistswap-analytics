@@ -384,7 +384,7 @@ function TokenPage() {
                 <TokenDetail
                   title="Discord"
                   value=<Link
-                    href={`https://discord.gg/invite/${tokens[token.id]['discord']}`}
+                    href={tokens[token.id]['discord']}
                     target="_blank"
                     variant="body1"
                   >
@@ -398,7 +398,7 @@ function TokenPage() {
                 <TokenDetail
                   title="Telegram"
                   value=<Link
-                    href={`https://t.me/${tokens[token.id]['telegram']}`}
+                    href={tokens[token.id]['telegram']}
                     target="_blank"
                     variant="body1"
                   >
@@ -412,7 +412,7 @@ function TokenPage() {
                 <TokenDetail
                   title="Twitter"
                   value=<Link
-                    href={`https://twitter.com/${tokens[token.id]['twitter']}`}
+                    href={tokens[token.id]['twitter']}
                     target="_blank"
                     variant="body1"
                   >
@@ -468,7 +468,7 @@ function TokenPage() {
                 <TokenDetail
                   title="Github"
                   value=<Link
-                    href={`https://github.com/${tokens[token.id]['github']}`}
+                    href={tokens[token.id]['github']}
                     target="_blank"
                     variant="body1"
                   >
@@ -482,7 +482,7 @@ function TokenPage() {
                 <TokenDetail
                   title="Github"
                   value=<Link
-                    href={`https://gitlab.com/${tokens[token.id]['gitlab']}`}
+                    href={tokens[token.id]['gitlab']}
                     target="_blank"
                     variant="body1"
                   >
