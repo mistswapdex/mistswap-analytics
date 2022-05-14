@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = false;
+const showTimelock = true;
 
 function UpcomingPoolsPage() {
   const {
@@ -249,7 +249,7 @@ function UpcomingPoolsPage() {
   }
 
   function getTitleForTimelockPools() {
-    const timeUntil = ((1650173389+(30*60)) * 1000) - Date.now();
+    const timeUntil = ((1652678989+(30*60)) * 1000) - Date.now();
 
     const days = Math.floor(timeUntil / (24*60*60*1000));
     const hours = Math.floor((timeUntil % (24*60*60*1000)) / (60 * 60 * 1000));
