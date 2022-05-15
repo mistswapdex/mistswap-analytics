@@ -249,7 +249,7 @@ function UpcomingPoolsPage() {
   }
 
   function getTitleForTimelockPools() {
-    const timeUntil = ((1652678989+(30*60)) * 1000) - Date.now();
+    const timeUntil = ((1652765389+(30*60)) * 1000) - Date.now();
 
     const days = Math.floor(timeUntil / (24*60*60*1000));
     const hours = Math.floor((timeUntil % (24*60*60*1000)) / (60 * 60 * 1000));
