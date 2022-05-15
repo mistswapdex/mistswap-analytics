@@ -125,7 +125,7 @@ const farms = {
   },
   "0xd45d971c09d966adbc7064e4ca05e2edaa3721c1": {
     farmId: 56,
-    allocPoint: 1652763802,
+    allocPoint: 7570861,
   },
   "0x1326e072b412fdf591562807657d48300ca21b1f": {
     farmId: 57,
