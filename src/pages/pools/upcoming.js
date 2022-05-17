@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = true;
+const showTimelock = false;
 
 function UpcomingPoolsPage() {
   const {
