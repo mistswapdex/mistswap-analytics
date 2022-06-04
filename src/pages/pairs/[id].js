@@ -394,7 +394,7 @@ function PairPage(props) {
               label: `${pair.token1.symbol} Address`,
               maxWidth: "250px",
             },
-            { key: "smartscan", label: "SmartScan", align: "right" },
+            { key: "sonar", label: "Sonar", align: "right" },
           ]}
           bodyCells={[
             <Typography variant="body2" noWrap>
@@ -410,7 +410,7 @@ function PairPage(props) {
                 {toChecksumAddress(pair.token1.id)}
               </Link>
             </Typography>,
-            <Link href={`https://smartscan.cash/address/${pair.id}`}>View</Link>,
+            <Link href={`https://sonar.cash/address/${pair.id}`}>View</Link>,
           ]}
         />
       </Box>

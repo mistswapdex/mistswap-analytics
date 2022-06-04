@@ -101,7 +101,7 @@ export default function Transactions({ transactions, txCount }) {
             key: "to",
             label: "To",
             render: (row) => (
-              <Link href={`https://smartscan.cash/address/${row.to}`}>
+              <Link href={`https://sonar.cash/address/${row.to}`}>
                 {toChecksumAddress(row.to)}
               </Link>
             ),

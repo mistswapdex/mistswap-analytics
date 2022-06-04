@@ -341,13 +341,13 @@ function TokenPage() {
             { key: "name", label: "Name" },
             { key: "symbol", label: "Symbol" },
             { key: "address", label: "Address" },
-            { key: "smartscan", label: "SmartScan", align: "right" },
+            { key: "sonar", label: "Sonar", align: "right" },
           ]}
           bodyCells={[
             token.name,
             token.symbol,
             toChecksumAddress(token.id),
-            <Link href={`https://smartscan.cash/address/${token.id}`}>View</Link>,
+            <Link href={`https://sonar.cash/address/${token.id}`}>View</Link>,
           ]}
         />
         <Grid

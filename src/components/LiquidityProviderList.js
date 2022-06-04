@@ -42,7 +42,7 @@ export default function LiquidityProviderList({
                 <AddressAvatar address={row.address} />
 
                 <Link
-                  href={`https://smartscan.cash/address/${row.address}`}
+                  href={`https://sonar.cash/address/${row.address}`}
                   target="_blank"
                 >
                   {row.address}
