@@ -26,7 +26,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 
-const showTimelock = false;
+const showTimelock = true;
 
 function UpcomingPoolsPage() {
   const {
@@ -69,6 +69,16 @@ function UpcomingPoolsPage() {
         ...v,
         accVolume: v.dayData.reduce((a, v) => a+Number.parseFloat(v.volumeUSD), 0),
       }))
+      // temporary hotfix for volume
+      .map((v) => {
+        const mul = {
+          "0xde5d57b31cb67d5aed93c26940394796953961cb": 5.94,
+          "0xf4d43d7ef48f46ee7e6989c45d0e97456e20b53b": 3.78,
+          "0x27580618797a2ce02fdfbbee948388a50a823611": 1.45,
+        };
+        v.accVolume *= mul.hasOwnProperty(v.id) ? mul[v.id] : 1;
+        return v;
+      })
       .sort((a, b) => b.accVolume - a.accVolume)
       // remove dayData with no volume
       .map((v) => ({
@@ -248,7 +258,7 @@ function UpcomingPoolsPage() {
   }
 
   function getTitleForTimelockPools() {
-    const timeUntil = ((1660539025+(30*60)) * 1000) - Date.now();
+    const timeUntil = ((1663131025+(30*60)) * 1000) - Date.now();
 
     const days = Math.floor(timeUntil / (24*60*60*1000));
     const hours = Math.floor((timeUntil % (24*60*60*1000)) / (60 * 60 * 1000));
