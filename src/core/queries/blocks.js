@@ -50,7 +50,7 @@ export const latestBlockQuery = gql`
       skip: 0
       orderBy: number
       orderDirection: desc
-      where: { number_gt: 9300000 }
+      where: { number_gt: 989200 }
     ) {
       ...blockFields
     }

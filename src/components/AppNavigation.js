@@ -183,7 +183,7 @@ export default function AppNavigation() {
               <ListItemText primary="Recent" />
             </ListItem>
             */}
-            {/*
+
             <ListItem
               button
               selected={router.pathname === "/pools"}
@@ -195,7 +195,7 @@ export default function AppNavigation() {
               </ListItemIcon>
               <ListItemText primary="All" />
             </ListItem>
-            */}
+
             <ListItem
               button
               selected={router.pathname === "/pools/upcoming"}
@@ -300,7 +300,7 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Tokens" />
         </ListItem>
-        {/*
+
         <ListItem
           button
           key="/portfolio"
@@ -319,7 +319,7 @@ export default function AppNavigation() {
           </ListItemIcon>
           <ListItemText primary="Portfolio" />
         </ListItem>
-        */}
+
       </List>
       <Dialog
         maxWidth="sm"
